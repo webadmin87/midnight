@@ -41,6 +41,10 @@ INSTALLED_APPS = (
     'pages',
 )
 
+REDACTOR_OPTIONS = {'lang': 'ru'}
+REDACTOR_UPLOAD_HANDLER = 'redactor.handlers.DateDirectoryUploader'
+REDACTOR_AUTH_DECORATOR = 'django.contrib.auth.decorators.login_required'
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -117,3 +121,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "midnight", "static", "demo"),
 )
+
+# Media storage
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'userfiles')
+MEDIA_URL = '/userfiles/'
