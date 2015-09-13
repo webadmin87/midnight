@@ -21,9 +21,9 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^redactor/', include('redactor.urls')),
-    url(r'^$', 'pages.views.index'),
-    url(r'', include('pages.urls', namespace='pages')),
+    url(r'^$', 'main.views.index'),
+    url(r'', include('main.urls', namespace='main')),
 ]
 
-if settings.DEBUG == True:
-	urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

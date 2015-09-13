@@ -30,15 +30,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-	'django_admin_bootstrapped',
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'redactor',
-    'pages',
+    'redactor',
+    'main',
 )
 
 REDACTOR_OPTIONS = {'lang': 'ru'}
@@ -62,7 +62,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-			'midnight/templates/demo'
+            'midnight/templates/demo'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -99,8 +99,8 @@ DATABASES = {
 LANGUAGE_CODE = 'ru-RU'
 
 LANGUAGES = (
-	('ru', 'Russian'),
-	('en', 'English'),
+    ('ru', 'Russian'),
+    ('en', 'English'),
 )
 
 

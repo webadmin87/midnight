@@ -28,5 +28,5 @@ msgstr "Страница"
 msgid "Pages"
 msgstr "Страницы"
 
-msgid "TextPages"
-msgstr "Текстовые страницы"
+msgid "MainModule"
+msgstr "Главный модуль"
