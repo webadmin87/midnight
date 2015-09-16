@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mptt',
     'redactor',
     'main',
 )
@@ -62,7 +63,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'midnight/templates/demo'
+            'midnight/templates/demo',
+            'midnight/templates/common',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

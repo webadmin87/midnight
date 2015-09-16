@@ -30,3 +30,60 @@ msgstr "Страницы"
 
 msgid "MainModule"
 msgstr "Главный модуль"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Menus"
+msgstr "Меню"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Slug"
+msgstr "Символьный код"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "MetaTitle"
+msgstr "Заголовок браузера"
+
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Link"
+msgstr "Ссылка"
+
+msgid "Target"
+msgstr "Назначение"
+
+msgid "Cls"
+msgstr "Класс"
+
+msgid "Sort"
+msgstr "Сортировка"
+
+msgid "Self window"
+msgstr "Текущее окно"
+
+msgid "Blank window"
+msgstr "Новое окно"
+
+msgid "Applications"
+msgstr "Приложения"
+
+msgid "Active"
+msgstr "Активность"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Parent"
+msgstr "Родитель"
+
+msgid "Fields in <strong>bold</strong> are required."
+msgstr "Поля отмеченные <strong>жирным</strong> обязательны к заполнению"
