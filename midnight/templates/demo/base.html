@@ -1,5 +1,6 @@
 {% load admin_static %}
 {% load staticfiles %}
+{% load menu %}
 <html>
 	<head>
 	
@@ -18,6 +19,9 @@
 			</div>
 	
 			<div class="col-xs-8">
+
+                {% show_menu "main" class='nav' %}
+
 				{% block content %}
 				{% endblock %}
 			</div>

@@ -1,0 +1,11 @@
+<li> {{node.title}}
+    {%if node.has_childs %}
+        <ul>
+         {%for ch in node.children.all %}
+              {%with node=ch template_name="main/menu/tpl_inner.html" %}
+                   {%include template_name%}
+              {%endwith%}
+         {%endfor%}
+         </ul>
+    {%endif%}
+</li>

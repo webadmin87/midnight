@@ -1,0 +1,5 @@
+<ul{% for key, value in data.iteritems %} {{ key }} = "{{ value }}"{% endfor %}>
+{%for node in menu.children.all %}
+    {%include "main/menu/tpl_inner.html" %}
+{%endfor%}
+</ul>

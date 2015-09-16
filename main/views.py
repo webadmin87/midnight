@@ -6,6 +6,6 @@ def index(request, slug='main'):
 
     p = get_object_or_404(Page, slug=slug)
 
-    return render(request, 'pages/index.html', {'page': p})
+    return render(request, 'main/pages/index.html', {'page': p})
 
 

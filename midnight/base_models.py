@@ -33,6 +33,11 @@ class BaseTree(MPTTModel):
 
     update_at = models.DateTimeField(auto_now=True)
 
+    def has_childs(self):
+        count = self.children.count()
+        return count > 0
+
+
     class Meta:
 
         abstract = True
