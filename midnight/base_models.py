@@ -37,9 +37,7 @@ class BaseTree(MPTTModel):
         count = self.children.count()
         return count > 0
 
-
     class Meta:
-
         abstract = True
 
 
@@ -58,3 +56,11 @@ class BaseAdmin(BaseAdminAbstract, admin.ModelAdmin):
 
 class BaseAdminTree(BaseAdminAbstract, MPTTModelAdmin):
     pass
+
+
+def published(self):
+    return self.filter(active=True)
+
+models.QuerySet.published = published
+
+models.Manager.published = published
