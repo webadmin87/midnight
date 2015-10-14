@@ -31,6 +31,21 @@ class Page(Base):
         verbose_name_plural = _(u'Pages')
 
 
+class IncludeArea(Base):
+
+    title = models.CharField(max_length=500, verbose_name=_(u'Title'))
+
+    slug = models.SlugField(max_length=255, unique=True, verbose_name=_(u'Slug'))
+
+    text = RedactorField(blank=True, verbose_name=_(u'Text'))
+
+    class Meta:
+
+        verbose_name = _(u'IncludeArea')
+
+        verbose_name_plural = _(u'IncludeAreas')
+
+
 class Menu(BaseTree):
 
     TARGET_CHOICES = (

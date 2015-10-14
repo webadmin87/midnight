@@ -16,6 +16,17 @@ class PageAdmin(BaseAdmin):
 admin.site.register(Page, PageAdmin)
 
 
+class IncludeAreaAdmin(BaseAdmin):
+
+    fields = ['title', 'slug', 'active', 'text']
+
+    list_display = ('title', 'slug', 'active')
+
+    pass
+
+admin.site.register(IncludeArea, IncludeAreaAdmin)
+
+
 class MenuAdmin(BaseAdminTree):
 
     fields = ['parent', 'active', 'title', 'link', 'slug', 'target', 'cls', 'sort']
