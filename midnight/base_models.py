@@ -64,3 +64,4 @@ def published(self):
 models.QuerySet.published = published
 
 models.Manager.published = published
+

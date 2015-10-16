@@ -77,3 +77,33 @@ class Menu(BaseTree):
         verbose_name = _(u'Menu')
 
         verbose_name_plural = _(u'Menu')
+
+
+class PhotoAlbum(Base):
+
+    title = models.CharField(max_length=500, verbose_name=_(u'Title'))
+
+    slug = models.SlugField(max_length=255, unique=True, verbose_name=_(u'Slug'))
+
+    text = RedactorField(blank=True, verbose_name=_(u'Text'))
+
+    class Meta:
+
+        verbose_name = _(u'PhotoAlbum')
+
+        verbose_name_plural = _(u'PhotoAlbum')
+
+
+class Photo(Base):
+
+    title = models.CharField(max_length=500, verbose_name=_(u'Title'))
+
+    image = models.FileField()
+
+    album = models.ForeignKey(PhotoAlbum)
+
+    class Meta:
+
+        verbose_name = _(u'Photo')
+
+        verbose_name_plural = _(u'Photo')
