@@ -1,0 +1,21 @@
+{
+  "name": "midnight",
+  "version": "0.0.1",
+  "homepage": "https://github.com/webadmin87/midnight",
+  "authors": [
+    "Anton nout <webadmin87@gmail.com>"
+  ],
+  "description": "CMS",
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.x",
+    "fancybox": "2.1.x"
+  }
+}

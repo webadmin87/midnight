@@ -1,0 +1,12 @@
+{% load thumbnail %}
+
+<h2>{{ album.title }}</h2>
+<ul{% for key, value in data.iteritems %} {{ key }} = "{{ value }}"{% endfor %}>
+{%for photo in album.photo_set.published.all %}
+    <li>
+        {% thumbnail photo.image size crop=crop as im %}
+            <a href="{{ photo.image.url }}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+        {% endthumbnail %}
+    </li>
+{%endfor%}
+</ul>

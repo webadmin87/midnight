@@ -5,6 +5,7 @@ from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from midnight.base_models import Base, BaseTree
+from sorl.thumbnail import ImageField
 
 
 class Page(Base):
@@ -98,7 +99,7 @@ class Photo(Base):
 
     title = models.CharField(max_length=500, verbose_name=_(u'Title'))
 
-    image = models.FileField()
+    image = ImageField(upload_to='photos')
 
     album = models.ForeignKey(PhotoAlbum)
 
