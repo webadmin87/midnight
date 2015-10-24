@@ -5,7 +5,7 @@
 {%for photo in album.photo_set.published.all %}
     <li>
         {% thumbnail photo.image size crop=crop as im %}
-            <a href="{{ photo.image.url }}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+            <a class="photogallery" rel="{{ album.slug }}" href="{{ photo.image.url }}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
         {% endthumbnail %}
     </li>
 {%endfor%}

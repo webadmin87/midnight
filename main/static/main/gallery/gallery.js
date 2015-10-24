@@ -1,0 +1,3 @@
+(function($){
+    $('.photogallery').fancybox();
+})(jQuery);

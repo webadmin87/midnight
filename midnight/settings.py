@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'mptt',
     'redactor',
     'sorl.thumbnail',
+    'django_assets',
     'main',
 )
 
@@ -122,10 +123,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "www", "static", "bower_components"),
+    os.path.join(BASE_DIR, "main", "static"),
     os.path.join(BASE_DIR, "midnight", "static", "demo"),
 )
 
 # Media storage
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'userfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'www', 'userfiles')
 MEDIA_URL = '/userfiles/'
+
+# Assets
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
