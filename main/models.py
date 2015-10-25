@@ -40,6 +40,9 @@ class IncludeArea(Base):
 
     text = RedactorField(blank=True, verbose_name=_(u'Text'))
 
+    def __unicode__(self):
+        return u'%s' % (self.title)
+
     class Meta:
 
         verbose_name = _(u'IncludeArea')
@@ -88,25 +91,31 @@ class PhotoAlbum(Base):
 
     text = RedactorField(blank=True, verbose_name=_(u'Text'))
 
+    def __unicode__(self):
+        return u'%s' % (self.title)
+
     class Meta:
 
         verbose_name = _(u'PhotoAlbum')
 
-        verbose_name_plural = _(u'PhotoAlbum')
+        verbose_name_plural = _(u'PhotoAlbums')
 
 
 class Photo(Base):
 
     title = models.CharField(max_length=500, verbose_name=_(u'Title'))
 
-    image = ImageField(upload_to='photos')
+    image = ImageField(upload_to='photos', verbose_name=_(u'Image'))
 
-    album = models.ForeignKey(PhotoAlbum)
+    album = models.ForeignKey(PhotoAlbum, verbose_name=_(u'PhotoAlbum'))
 
-    sort = models.IntegerField(default=500)
+    sort = models.IntegerField(default=500, verbose_name=_(u'Sort'))
+
+    def __unicode__(self):
+        return u'%s' % (self.title)
 
     class Meta:
 
         verbose_name = _(u'Photo')
 
-        verbose_name_plural = _(u'Photo')
+        verbose_name_plural = _(u'Photos')

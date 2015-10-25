@@ -87,3 +87,25 @@ msgstr "Родитель"
 
 msgid "Fields in <strong>bold</strong> are required."
 msgstr "Поля отмеченные <strong>жирным</strong> обязательны к заполнению"
+
+msgid "IncludeArea"
+msgstr "Включаемая область"
+
+msgid "IncludeAreas"
+msgstr "Включаемые области"
+
+msgid "PhotoAlbum"
+msgstr "Фотоальбом"
+
+msgid "PhotoAlbums"
+msgstr "Фотоальбомы"
+
+msgid "Photo"
+msgstr "Фото"
+
+msgid "Photos"
+msgstr "Фото"
+
+msgid "Image"
+msgstr "Изображение"
+
