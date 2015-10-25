@@ -1,4 +1,4 @@
-<li> {{node.title}}
+<li> <a href="{{ node.link }}" target="{{ node.target }}" class="{{ node.class }}">{{node.title}}</a>
     {%if node.has_childs %}
         <ul>
          {%for ch in node.children.published.all %}

@@ -8,7 +8,7 @@
 {%for photo in photos %}
     <li>
         {% thumbnail photo.image size crop=crop as im %}
-            <a class="photogallery" rel="{{ album.slug }}" href="{{ photo.image.url }}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
+            <a class="photogallery" rel="{{ album.slug }}" href="{{ photo.image.url }}" title="{{ photo.title }}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"></a>
         {% endthumbnail %}
     </li>
 {%endfor%}

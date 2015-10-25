@@ -18,9 +18,19 @@
 
 	<div class="container">
 
+        <div class="jumbotron">
+            <h1>MidnightCms</h1>
+            <p>The amazing powered by Django framework</p>
+            <p><a class="btn btn-primary btn-lg" href="/admin/" role="button" target="_blank">Admin panel</a></p>
+        </div>
+
 		<div class="row">
 
 			<div class="col-xs-4">
+
+                {% show_menu "main" class='nav nav-pills nav-stacked' %}
+
+                <hr />
 
                 {% show_area "left" %}
 
@@ -28,15 +38,18 @@
 	
 			<div class="col-xs-8">
 
-                {% show_menu "main" class='nav' %}
-
 				{% block content %}
 				{% endblock %}
 
-                {% show_gallery "test" "150x110" %}
+                {% show_gallery "test" "150x110" class='list-inline' %}
+
 			</div>
 
 		</div>
+
+        <footer>
+            <p>&copy; MidnightCms</p>
+        </footer>
 		
 	</div>
 
