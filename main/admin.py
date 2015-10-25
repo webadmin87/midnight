@@ -1,6 +1,8 @@
+from django.forms import ModelForm
 from main.models import *
 from django.contrib import admin
 from midnight.base_models import BaseAdmin, BaseAdminTree
+from midnight.widgets import AdminImageWidget
 
 
 class PageAdmin(BaseAdmin):
@@ -38,6 +40,16 @@ class MenuAdmin(BaseAdminTree):
 admin.site.register(Menu, MenuAdmin)
 
 
+class PhotoForm(ModelForm):
+
+    class Meta:
+        model = Photo
+        fields = '__all__'
+        widgets = {
+            'image': AdminImageWidget,
+        }
+
+
 class PhotoInline(admin.TabularInline):
 
     exclude = ['author']
@@ -45,6 +57,10 @@ class PhotoInline(admin.TabularInline):
     model = Photo
 
     extra = 3
+
+    form = PhotoForm
+
+    ordering = ('sort',)
 
 
 class PhotoAlbumAdmin(BaseAdmin):

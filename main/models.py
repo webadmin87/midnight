@@ -103,6 +103,8 @@ class Photo(Base):
 
     album = models.ForeignKey(PhotoAlbum)
 
+    sort = models.IntegerField(default=500)
+
     class Meta:
 
         verbose_name = _(u'Photo')
