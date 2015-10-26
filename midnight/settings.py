@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'django_assets',
     'main',
+    'news',
 )
 
 REDACTOR_OPTIONS = {'lang': 'ru'}
