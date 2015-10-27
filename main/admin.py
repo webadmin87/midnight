@@ -12,8 +12,11 @@ class PageAdmin(BaseAdmin):
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
-    list_display = ('title', 'slug', 'active')
+    list_display = ('title', 'id', 'slug', 'active')
 
+    list_filter = ('active',)
+
+    search_fields = ('id', 'title', 'slug',)
 
 admin.site.register(Page, PageAdmin)
 
@@ -24,7 +27,9 @@ class IncludeAreaAdmin(BaseAdmin):
 
     list_display = ('title', 'slug', 'active')
 
-    pass
+    list_filter = ('active',)
+
+    search_fields = ('id', 'title', 'slug',)
 
 admin.site.register(IncludeArea, IncludeAreaAdmin)
 
@@ -33,9 +38,13 @@ class MenuAdmin(BaseAdminTree):
 
     fields = ['parent', 'active', 'title', 'link', 'slug', 'target', 'cls', 'sort']
 
-    list_display = ('title', 'link', 'active', 'sort')
+    list_display = ('title', 'id', 'link', 'active', 'sort')
 
-    pass
+    list_filter = ('active',)
+
+    search_fields = ('id', 'title', 'slug',)
+
+    list_editable = ('sort',)
 
 admin.site.register(Menu, MenuAdmin)
 
@@ -67,9 +76,13 @@ class PhotoAlbumAdmin(BaseAdmin):
 
     fields = ['title', 'slug', 'active', 'text']
 
-    list_display = ('title', 'slug', 'active')
+    list_display = ('title', 'id', 'slug', 'active')
 
     inlines = [PhotoInline]
+
+    list_filter = ('active',)
+
+    search_fields = ('id', 'title', 'slug',)
 
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)
