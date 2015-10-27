@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'mptt',
     'redactor',
     'sorl.thumbnail',
+    'bootstrap_pagination',
     'django_assets',
     'main',
     'news',

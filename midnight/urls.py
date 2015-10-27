@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^redactor/', include('redactor.urls')),
+    url(r'', include('news.urls', namespace='news')),
     url(r'^$', 'main.views.index'),
     url(r'', include('main.urls', namespace='main')),
 ]
