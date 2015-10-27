@@ -2,6 +2,7 @@ from django.db import models
 from midnight.base_models import BaseTree, Base
 from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
+from sorl.thumbnail import ImageField
 
 
 class Section(BaseTree):
@@ -27,9 +28,9 @@ class Section(BaseTree):
 
     class Meta:
 
-        verbose_name = _(u'NewsItem')
+        verbose_name = _(u'NewsSection')
 
-        verbose_name_plural = _(u'News')
+        verbose_name_plural = _(u'NewsSections')
 
 
 class News(Base):
@@ -42,7 +43,7 @@ class News(Base):
 
     sections = models.ManyToManyField(Section, verbose_name=_(u'Sections'))
 
-    image = models.FileField(blank=True, verbose_name=_(u'Image'))
+    image = ImageField(upload_to='news', verbose_name=_(u'Image'), blank=True)
 
     annotation = models.TextField(blank=True, verbose_name=_(u'Annotation'))
 
@@ -53,3 +54,12 @@ class News(Base):
     keywords = models.CharField(max_length=2000, blank=True, verbose_name=_(u'Keywords'))
 
     description = models.CharField(max_length=2000, blank=True, verbose_name=_(u'Description'))
+
+    def __unicode__(self):
+        return u'%s' % (self.title)
+
+    class Meta:
+
+        verbose_name = _(u'NewsItem')
+
+        verbose_name_plural = _(u'News')
