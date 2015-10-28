@@ -1,11 +1,17 @@
 from django.shortcuts import render
-from news.models import News
+from news.models import News, Section
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def index(request, slug=None):
 
-    models = News.objects.published().all()
+    section = None
+
+    if slug is None:
+        models = News.objects.published().all()
+    else:
+        section = Section.objects.get(slug=slug)
+        models = News.objects.published().filter(sections__slug=slug).all()
 
     pager = Paginator(models, 1)
 
@@ -20,4 +26,4 @@ def index(request, slug=None):
         # If page is out of range (e.g. 9999), deliver last page of results.
         news = pager.page(pager.num_pages)
 
-    return render(request, 'news/news/index.html', {'news': news})
+    return render(request, 'news/news/index.html', {'news': news, 'section': section, 'meta': section})

@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load bootstrap_pagination %}
 
 {% block content %}
+
+    {% if section %}
+        <h1>{{ section.title }}</h1>
+    {% else  %}
+       <h1>{% trans "News" %}</h1>
+    {% endif %}
 
     {% for item in news %}
 

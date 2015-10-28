@@ -3,6 +3,7 @@ from midnight.base_models import BaseTree, Base
 from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField
+from mptt.fields import TreeManyToManyField
 
 
 class Section(BaseTree):
@@ -41,7 +42,7 @@ class News(Base):
 
     date = models.DateField(verbose_name=_(u'Date'), blank=True)
 
-    sections = models.ManyToManyField(Section, verbose_name=_(u'Sections'))
+    sections = TreeManyToManyField(Section, verbose_name=_(u'Sections'))
 
     image = ImageField(upload_to='news', verbose_name=_(u'Image'), blank=True)
 

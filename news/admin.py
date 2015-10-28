@@ -4,6 +4,7 @@ from midnight.base_models import BaseAdmin, BaseAdminTree
 from news.models import Section, News
 from midnight.widgets import AdminImageWidget
 
+
 class SectionAdmin(BaseAdminTree):
 
     fieldsets = [
