@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.template import Template, Context
 from news.models import News, Section
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -27,3 +28,12 @@ def index(request, slug=None):
         news = pager.page(pager.num_pages)
 
     return render(request, 'news/news/index.html', {'news': news, 'section': section, 'meta': section})
+
+
+def detail(request, slug='main'):
+
+    p = get_object_or_404(News, slug=slug)
+
+    text = Template(p.text).render(Context())
+
+    return render(request, 'news/news/detail.html', {'item': p, 'text': text})
