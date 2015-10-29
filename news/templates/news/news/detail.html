@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>{{ item.title }}</h1>
+{% load thumbnail %}
 
-{{ text | safe }}
+{% block content %}
+
+    <div class="clearfix">
+
+        <h1>{{ item.title }}</h1>
+
+        {% thumbnail item.image "240x240" crop="center" as im %}
+
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" align="left" alt="" />
+
+        {% endthumbnail %}
+
+        {{ text | safe }}
+
+    </div>
 
 {% endblock %}

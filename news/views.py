@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.template import Template, Context
+from midnight.components import MetaSeo
 from news.models import News, Section
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import Http404
+from django.utils.translation import ugettext_lazy as _
 
 
 def index(request, slug=None):
@@ -9,12 +12,24 @@ def index(request, slug=None):
     section = None
 
     if slug is None:
-        models = News.objects.published().all()
+        q = News.objects.published()
+        meta = MetaSeo()
+        meta.metatitle = _('News')
     else:
         section = Section.objects.get(slug=slug)
-        models = News.objects.published().filter(sections__slug=slug).all()
 
-    pager = Paginator(models, 1)
+        if section is None:
+            raise Http404('Section with slug "%s" not found' % slug)
+
+        meta = MetaSeo(section)
+
+        q = News.objects.published().filter(sections__slug=slug)
+
+    q = q.order_by('-date', '-id')
+
+    models = q.all()
+
+    pager = Paginator(models, 20)
 
     page = request.GET.get('page')
 
@@ -27,13 +42,15 @@ def index(request, slug=None):
         # If page is out of range (e.g. 9999), deliver last page of results.
         news = pager.page(pager.num_pages)
 
-    return render(request, 'news/news/index.html', {'news': news, 'section': section, 'meta': section})
+    return render(request, 'news/news/index.html', {'news': news, 'section': section, 'meta': meta})
 
 
 def detail(request, slug='main'):
 
-    p = get_object_or_404(News, slug=slug)
+    item = get_object_or_404(News, slug=slug)
 
-    text = Template(p.text).render(Context())
+    text = Template(item.text).render(Context())
 
-    return render(request, 'news/news/detail.html', {'item': p, 'text': text})
+    meta = MetaSeo(item)
+
+    return render(request, 'news/news/detail.html', {'item': item, 'text': text, 'meta': meta})

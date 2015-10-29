@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load bootstrap_pagination %}
+{% load thumbnail %}
 
 {% block content %}
 
@@ -13,11 +14,25 @@
 
     {% for item in news %}
 
-        <h2><a href="{% url 'news:news_detail' slug=item.slug %}">{{ item.title }}</a></h2>
+        <div class="media">
 
-        <p>{{ item.annotation | safe }}</p>
+        {% thumbnail item.image "150x150" crop="center" as im %}
+            <div class="media-left">
+                <a href="{% url 'news:news_detail' slug=item.slug %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" /></a>
+            </div>
+        {% endthumbnail %}
 
-        <hr />
+        <div class="media-body">
+
+            <h3><a href="{% url 'news:news_detail' slug=item.slug %}">{{ item.title }}</a></h3>
+
+            <p>{{ item.annotation | safe }}</p>
+
+            <p>{{ item.date }}</p>
+
+        </div>
+
+        </div>
 
     {% endfor %}
 
