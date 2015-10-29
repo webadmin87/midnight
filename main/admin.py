@@ -3,6 +3,7 @@ from main.models import *
 from django.contrib import admin
 from midnight.base_models import BaseAdmin, BaseAdminTree
 from midnight.widgets import AdminImageWidget
+from django.core.urlresolvers import reverse
 
 
 class PageAdmin(BaseAdmin):
@@ -12,11 +13,19 @@ class PageAdmin(BaseAdmin):
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
-    list_display = ('title', 'id', 'slug', 'active')
+    list_display = ('title', 'id', 'slug', 'active', 'public_link')
 
     list_filter = ('active',)
 
     search_fields = ('id', 'title', 'slug',)
+
+    def public_link(self, obj):
+        url=reverse('main:page_detail', args=[obj.slug])
+        return '<a target="_blank" href="%s">%s</a>' % (url, url)
+
+    public_link.allow_tags = True
+
+    public_link.short_description = 'Url'
 
 admin.site.register(Page, PageAdmin)
 
