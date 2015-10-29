@@ -6,7 +6,7 @@ from django.template import Template, Context
 
 def index(request, slug='main'):
 
-    p = get_object_or_404(Page, slug=slug)
+    p = get_object_or_404(Page, slug=slug, active=True)
 
     text = Template(p.text).render(Context())
 
