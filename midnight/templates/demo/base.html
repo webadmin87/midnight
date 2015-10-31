@@ -3,6 +3,7 @@
 {% load menu %}
 {% load gallery %}
 {% load include_area %}
+{% load news_line %}
 {% load assets %}
 <html>
 	<head>
@@ -37,6 +38,10 @@
                 <hr />
 
                 {% show_area "left" %}
+
+                <hr />
+
+                {% show_news_line slug='company'%}
 
 			</div>
 	

@@ -74,3 +74,10 @@ msgstr "Новость"
 #: models.py:65
 msgid "News"
 msgstr "Новости"
+
+msgid "All news"
+msgstr "Все новости"
+
+#, python-format
+msgid "All %(title)s"
+msgstr "Все %(title)s"
