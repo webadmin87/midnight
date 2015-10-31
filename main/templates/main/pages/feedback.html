@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+    {% if messages %}
+
+            {% for message in messages %}
+
+                {% if message.tags == 'success' %}
+
+                    <div class="alert alert-success">{{ message }}</div>
+
+                {% else %}
+
+                    <div class="alert alert-warning">{{ message }}</div>
+
+                {% endif %}
+
+            {% endfor %}
+
+    {% endif %}
+
+    <form method="post" class="feedback-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% trans 'Submit' %}" class="btn btn-primary" />
+    </form>
+
+{% endblock %}

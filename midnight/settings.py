@@ -138,3 +138,8 @@ MEDIA_URL = '/userfiles/'
 # Assets
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
+
+# Email
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/emails'

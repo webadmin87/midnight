@@ -1,0 +1,5 @@
+<p>Вами получено сообщение следующего содержания:</p>
+
+{% for field in context %}
+    <p><strong>{{ field.label }}:</strong> {{ field.value }}</p>
+{% endfor %}
