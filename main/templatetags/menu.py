@@ -4,7 +4,6 @@ from main.models import Menu
 register = template.Library()
 
 
-@register.inclusion_tag('main/menu/tpl.html')
 def show_menu(slug, **kwargs):
 
     try:
@@ -12,4 +11,6 @@ def show_menu(slug, **kwargs):
         return {'menu': menu, 'data': kwargs}
     except Menu.DoesNotExist:
         return None
+
+register.inclusion_tag(file_name='main/menu/show_menu.html', name='show_menu')(show_menu)
 

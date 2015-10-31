@@ -5,6 +5,7 @@ from news.models import News, Section
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 
 def index(request, slug=None):
@@ -29,7 +30,7 @@ def index(request, slug=None):
 
     models = q.all()
 
-    pager = Paginator(models, 20)
+    pager = Paginator(models, settings.NEWS_PAGE_SIZE)
 
     page = request.GET.get('page')
 
