@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'bootstrap_pagination',
     'django_assets',
+    'bootstrapform',
     'main',
     'news',
 )
