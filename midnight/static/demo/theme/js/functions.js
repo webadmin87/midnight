@@ -1,0 +1,5 @@
+(function($){
+
+    $('.feedback').fancybox();
+
+})(jQuery);

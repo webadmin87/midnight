@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -10,68 +9,142 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-11 18:38+0000\n"
+"POT-Creation-Date: 2015-11-01 10:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "Page"
-msgstr "Страница"
-
-msgid "Pages"
-msgstr "Страницы"
-
+#: apps.py:9
 msgid "MainModule"
 msgstr "Главный модуль"
 
-msgid "Menu"
-msgstr "Меню"
+#: forms.py:7
+msgid "Name"
+msgstr "Имя"
 
-msgid "Menus"
-msgstr "Меню"
+#: forms.py:9
+msgid "Email"
+msgstr "Email"
 
+#: forms.py:11
+msgid "Phone"
+msgstr "Телефон"
+
+#: models.py:13 models.py:37 models.py:60 models.py:88 models.py:106
 msgid "Title"
 msgstr "Название"
 
+#: models.py:15 models.py:39 models.py:64 models.py:90
 msgid "Slug"
 msgstr "Символьный код"
 
+#: models.py:17 models.py:41 models.py:92
 msgid "Text"
 msgstr "Текст"
 
+#: models.py:19
 msgid "MetaTitle"
 msgstr "Заголовок браузера"
 
+#: models.py:21
 msgid "Keywords"
 msgstr "Ключевые слова"
 
+#: models.py:23
 msgid "Description"
 msgstr "Описание"
 
-msgid "Link"
-msgstr "Ссылка"
+#: models.py:30
+msgid "Page"
+msgstr "Страница"
 
-msgid "Target"
-msgstr "Назначение"
+#: models.py:32
+msgid "Pages"
+msgstr "Страницы"
 
-msgid "Cls"
-msgstr "Класс"
+#: models.py:48
+msgid "IncludeArea"
+msgstr "Включаемая область"
 
-msgid "Sort"
-msgstr "Сортировка"
+#: models.py:50
+msgid "IncludeAreas"
+msgstr "Включаемые области"
 
+#: models.py:56
 msgid "Self window"
 msgstr "Текущее окно"
 
+#: models.py:57
 msgid "Blank window"
 msgstr "Новое окно"
+
+#: models.py:62
+msgid "Link"
+msgstr "Ссылка"
+
+#: models.py:66
+msgid "Target"
+msgstr "Назначение"
+
+#: models.py:68
+msgid "Cls"
+msgstr "Класс"
+
+#: models.py:70 models.py:112
+msgid "Sort"
+msgstr "Сортировка"
+
+#: models.py:81 models.py:83
+msgid "Menu"
+msgstr "Меню"
+
+#: models.py:99 models.py:110
+msgid "PhotoAlbum"
+msgstr "Фотоальбом"
+
+#: models.py:101
+msgid "PhotoAlbums"
+msgstr "Фотоальбомы"
+
+#: models.py:108
+msgid "Image"
+msgstr "Изображение"
+
+#: models.py:119
+msgid "Photo"
+msgstr "Фото"
+
+#: models.py:121
+msgid "Photos"
+msgstr "Фото"
+
+#: templates/main/pages/feedback.html:29 templates/main/tags/ajax_form.html:11
+msgid "Submit"
+msgstr "Отправить"
+
+#: templates/main/tags/ajax_form.html:5
+msgid "form_success"
+msgstr "Форма успешно отправлена"
+
+#: templates/main/tags/ajax_form.html:7
+msgid "form_error"
+msgstr "Ошибка отправки формы"
+
+#: views.py:29
+msgid "Feedback message"
+msgstr "Сообщение из формы обратной связи"
+
+msgid "Feedback"
+msgstr "Обратная связь"
+
+msgid "Menus"
+msgstr "Меню"
 
 msgid "Applications"
 msgstr "Приложения"
@@ -87,25 +160,3 @@ msgstr "Родитель"
 
 msgid "Fields in <strong>bold</strong> are required."
 msgstr "Поля отмеченные <strong>жирным</strong> обязательны к заполнению"
-
-msgid "IncludeArea"
-msgstr "Включаемая область"
-
-msgid "IncludeAreas"
-msgstr "Включаемые области"
-
-msgid "PhotoAlbum"
-msgstr "Фотоальбом"
-
-msgid "PhotoAlbums"
-msgstr "Фотоальбомы"
-
-msgid "Photo"
-msgstr "Фото"
-
-msgid "Photos"
-msgstr "Фото"
-
-msgid "Image"
-msgstr "Изображение"
-
