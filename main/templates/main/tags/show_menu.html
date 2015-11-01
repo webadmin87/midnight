@@ -1,5 +1,5 @@
 <ul{% for key, value in data.iteritems %} {{ key }} = "{{ value }}"{% endfor %}>
 {%for node in menu.children.published.all %}
-    {%include "main/menu/show_menu_inner.html" %}
+    {%include "main/tags/show_menu_inner.html" %}
 {%endfor%}
 </ul>
