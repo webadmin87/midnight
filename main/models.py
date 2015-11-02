@@ -4,8 +4,53 @@ from django.db import models
 from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
-from midnight.base_models import Base, BaseTree
 from sorl.thumbnail import ImageField
+from django.contrib.auth.models import User, UserManager, AbstractUser
+from django.conf import settings
+
+
+class AppUser(AbstractUser):
+
+    phone = models.CharField(blank=True, max_length=10, verbose_name=_(u'Phone'))
+
+    image = ImageField(upload_to='users', verbose_name=_(u'Image'), blank=True)
+
+    objects = UserManager()
+
+
+class Base(models.Model):
+
+    active = models.BooleanField(default=True, verbose_name=_(u'Active'))
+
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(u'Author'))
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    update_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+
+        abstract = True
+
+
+class BaseTree(MPTTModel):
+
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True, verbose_name=_(u'Parent'))
+
+    active = models.BooleanField(default=True, verbose_name=_(u'Active'))
+
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(u'Author'))
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    update_at = models.DateTimeField(auto_now=True)
+
+    def has_childs(self):
+        count = self.children.count()
+        return count > 0
+
+    class Meta:
+        abstract = True
 
 
 class Page(Base):

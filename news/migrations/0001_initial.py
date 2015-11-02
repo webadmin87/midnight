@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import sorl.thumbnail.fields
 import redactor.fields
 import mptt.fields
 from django.conf import settings
@@ -24,7 +25,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=255, verbose_name='Title')),
                 ('slug', models.SlugField(unique=True, max_length=255, verbose_name='Slug')),
                 ('date', models.DateField(verbose_name='Date', blank=True)),
-                ('image', models.FileField(upload_to=b'', verbose_name='Image', blank=True)),
+                ('image', sorl.thumbnail.fields.ImageField(upload_to=b'news', verbose_name='Image', blank=True)),
                 ('annotation', models.TextField(verbose_name='Annotation', blank=True)),
                 ('text', redactor.fields.RedactorField(verbose_name='Text', blank=True)),
                 ('metatitle', models.CharField(max_length=2000, verbose_name='Title', blank=True)),
@@ -33,7 +34,8 @@ class Migration(migrations.Migration):
                 ('author', models.ForeignKey(verbose_name='Author', to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'abstract': False,
+                'verbose_name': 'NewsItem',
+                'verbose_name_plural': 'News',
             },
         ),
         migrations.CreateModel(
@@ -57,13 +59,13 @@ class Migration(migrations.Migration):
                 ('parent', mptt.fields.TreeForeignKey(related_name='children', verbose_name='Parent', blank=True, to='news.Section', null=True)),
             ],
             options={
-                'verbose_name': 'NewsItem',
-                'verbose_name_plural': 'News',
+                'verbose_name': 'NewsSection',
+                'verbose_name_plural': 'NewsSections',
             },
         ),
         migrations.AddField(
             model_name='news',
             name='sections',
-            field=models.ManyToManyField(to='news.Section', verbose_name='Sections'),
+            field=mptt.fields.TreeManyToManyField(to='news.Section', verbose_name='Sections'),
         ),
     ]

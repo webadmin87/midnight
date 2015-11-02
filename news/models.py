@@ -1,5 +1,5 @@
 from django.db import models
-from midnight.base_models import BaseTree, Base
+from main.models import BaseTree, Base
 from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField

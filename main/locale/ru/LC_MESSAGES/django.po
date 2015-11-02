@@ -163,3 +163,6 @@ msgstr "Поля отмеченные <strong>жирным</strong> обязат
 
 msgid "Captcha"
 msgstr "Код с картинки"
+
+msgid "Additional"
+msgstr "Дополнительно"

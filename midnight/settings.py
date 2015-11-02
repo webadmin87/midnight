@@ -48,6 +48,12 @@ INSTALLED_APPS = (
     'news',
 )
 
+# User model
+
+AUTH_USER_MODEL = 'main.AppUser'
+
+# Redactor settings
+
 REDACTOR_OPTIONS = {'lang': 'ru'}
 REDACTOR_UPLOAD_HANDLER = 'redactor.handlers.DateDirectoryUploader'
 REDACTOR_AUTH_DECORATOR = 'django.contrib.auth.decorators.login_required'

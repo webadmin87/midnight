@@ -1,9 +1,28 @@
+from django.contrib.auth.admin import UserAdmin
 from django.forms import ModelForm
 from main.models import *
 from django.contrib import admin
-from midnight.base_models import BaseAdmin, BaseAdminTree
 from midnight.widgets import AdminImageWidget
 from django.core.urlresolvers import reverse
+from mptt.admin import MPTTModelAdmin
+from django.utils.translation import ugettext_lazy as _
+
+
+class BaseAdminAbstract(object):
+
+     def save_model(self, request, obj, form, change):
+
+        obj.author = request.user
+
+        obj.save()
+
+
+class BaseAdmin(BaseAdminAbstract, admin.ModelAdmin):
+    pass
+
+
+class BaseAdminTree(BaseAdminAbstract, MPTTModelAdmin):
+    pass
 
 
 class PageAdmin(BaseAdmin):
@@ -104,3 +123,12 @@ class PhotoAlbumAdmin(BaseAdmin):
 
 
 admin.site.register(PhotoAlbum, PhotoAlbumAdmin)
+
+
+class AppUserAdmin(UserAdmin):
+
+    fieldsets = UserAdmin.fieldsets + (
+        (_(u'Additional'), {'fields': ('phone', 'image',)}),
+    )
+
+admin.site.register(AppUser, AppUserAdmin)

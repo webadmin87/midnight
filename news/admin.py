@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
-from midnight.base_models import BaseAdmin, BaseAdminTree
+from main.admin import BaseAdmin, BaseAdminTree
 from news.models import Section, News
 from midnight.widgets import AdminImageWidget
 
