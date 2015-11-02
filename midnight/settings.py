@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'bootstrap_pagination',
     'django_assets',
     'bootstrapform',
+    'captcha',
     'main',
     'news',
 )
@@ -144,3 +145,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/emails'
+
+# Captcha
+
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
+

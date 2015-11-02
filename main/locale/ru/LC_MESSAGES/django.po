@@ -160,3 +160,6 @@ msgstr "Родитель"
 
 msgid "Fields in <strong>bold</strong> are required."
 msgstr "Поля отмеченные <strong>жирным</strong> обязательны к заполнению"
+
+msgid "Captcha"
+msgstr "Код с картинки"
