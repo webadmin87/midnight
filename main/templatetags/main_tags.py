@@ -48,3 +48,10 @@ def ajax_form(cls_name, view_name, modal=False, tag_id=None):
     return {'form': form, 'url': url, 'modal': modal, 'id': tag_id}
 
 register.inclusion_tag(file_name='main/tags/ajax_form.html', name='ajax_form')(ajax_form)
+
+
+def user_info(context):
+    request = context['request']
+    return {'user': request.user}
+
+register.inclusion_tag(file_name='main/tags/user_info.html', takes_context=True, name='user_info')(user_info)

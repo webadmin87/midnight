@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{% if user.is_authenticated %}
+
+    <p>
+        <a href="{% url 'main:user_profile' %}">{% trans "Profile" %}</a>
+        <a href="{% url 'auth_logout' %}">{% trans "Logout" %} ({{ user.username }})</a>
+    </p>
+
+{% else %}
+
+    <p>
+        <a href="{% url 'auth_login' %}">{% trans "Login" %}</a>
+        <a href="{% url 'registration_register' %}">{% trans "Registration" %}</a>
+    </p>
+
+{% endif %}
