@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django_assets',
     'bootstrapform',
     'captcha',
+    'registration',
     'main',
     'news',
 )
@@ -156,3 +157,7 @@ EMAIL_FILE_PATH = '/tmp/emails'
 
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 
+# Registration
+
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
