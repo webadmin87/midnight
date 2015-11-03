@@ -1,17 +1,19 @@
 {% load i18n %}
 
-{% if user.is_authenticated %}
+<div class="panel panel-default">
+    <div class="panel-body">
 
-    <p>
-        <a href="{% url 'main:user_profile' %}">{% trans "Profile" %}</a>
-        <a href="{% url 'auth_logout' %}">{% trans "Logout" %} ({{ user.username }})</a>
-    </p>
+        {% if user.is_authenticated %}
 
-{% else %}
+                <a href="{% url 'main:user_profile' %}">{% trans "Profile" %}</a> |
+                <a href="{% url 'auth_logout' %}">{% trans "Logout" %} ({{ user.username }})</a>
 
-    <p>
-        <a href="{% url 'auth_login' %}">{% trans "Login" %}</a>
-        <a href="{% url 'registration_register' %}">{% trans "Registration" %}</a>
-    </p>
+        {% else %}
 
-{% endif %}
+                <a href="{% url 'auth_login' %}">{% trans "Login" %}</a> |
+                <a href="{% url 'registration_register' %}">{% trans "Registration" %}</a>
+
+        {% endif %}
+
+    </div>
+</div>
