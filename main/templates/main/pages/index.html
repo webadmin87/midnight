@@ -1,5 +1,9 @@
 {% extends "layouts/base.html" %}
 
+{% block title %}{{ meta.metatitle }}{% endblock %}
+{% block keywords %}{{ meta.keywords }}{% endblock %}
+{% block description %}{{ meta.description }}{% endblock %}
+
 {% block content %}
 <h1>{{ page.title }}</h1>
 

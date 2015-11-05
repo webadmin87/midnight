@@ -1,46 +1,21 @@
 class MetaSeo(object):
 
-    __metatitle = ''
+    metatitle = ''
 
-    __keywords = ''
+    keywords = ''
 
-    __description = ''
+    description = ''
 
-    __model = None
+    _model = None
 
-    def __init__(self, model = None):
+    def __init__(self, model=None):
 
-        self.__model = model
+        self._model = model
 
-        if self.__model is not None:
+        if self._model is not None:
 
-            self.__metatitle = self.__model.metatitle if self.__model.metatitle else self.__model.title
+            self.metatitle = self._model.metatitle if self._model.metatitle else self._model.title
 
-            self.__keywords = self.__model.keywords
+            self.keywords = self._model.keywords
 
-            self.__description = self.__model.description
-
-    def get_metatitle(self):
-        return self.__metatitle
-
-    def set_metatitle(self, value):
-        self.__metatitle = value
-
-    def get_keywords(self):
-        return self.__keywords
-
-    def set_keywords(self, value):
-        self.__keywords = value
-
-    def get_description(self):
-        return self.__description
-
-    def set_description(self, value):
-        self.__description = value
-
-
-    metatitle = property(get_metatitle, set_metatitle)
-
-    keywords = property(get_keywords, set_keywords)
-
-    description = property(get_description, set_description)
+            self.description = self._model.description

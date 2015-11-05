@@ -2,6 +2,10 @@
 
 {% load thumbnail %}
 
+{% block title %}{{ meta.metatitle }}{% endblock %}
+{% block keywords %}{{ meta.keywords }}{% endblock %}
+{% block description %}{{ meta.description }}{% endblock %}
+
 {% block content %}
 
     <div class="clearfix">

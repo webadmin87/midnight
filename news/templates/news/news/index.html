@@ -4,6 +4,10 @@
 {% load bootstrap_pagination %}
 {% load thumbnail %}
 
+{% block title %}{{ meta.metatitle }}{% endblock %}
+{% block keywords %}{{ meta.keywords }}{% endblock %}
+{% block description %}{{ meta.description }}{% endblock %}
+
 {% block content %}
 
     {% if section %}
