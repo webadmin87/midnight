@@ -5,6 +5,7 @@
 {% block title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
+<h1>{% trans "Log in" %}</h1>
 <form method="post" action="">
     {% csrf_token %}
     {{ form|bootstrap }}

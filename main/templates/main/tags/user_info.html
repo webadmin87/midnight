@@ -6,12 +6,12 @@
         {% if user.is_authenticated %}
 
                 <a href="{% url 'main:user_profile' %}">{% trans "Profile" %}</a> |
-                <a href="{% url 'auth_logout' %}">{% trans "Logout" %} ({{ user.username }})</a>
+                <a href="{% url 'auth_logout' %}">{% trans "Log out" %} ({{ user.username }})</a>
 
         {% else %}
 
-                <a href="{% url 'auth_login' %}">{% trans "Login" %}</a> |
-                <a href="{% url 'registration_register' %}">{% trans "Registration" %}</a>
+                <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a> |
+                <a href="{% url 'registration_register' %}">{% trans "Register for an account" %}</a>
 
         {% endif %}
 

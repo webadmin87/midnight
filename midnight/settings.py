@@ -118,6 +118,9 @@ LANGUAGES = (
     ('en', 'English'),
 )
 
+LOCALE_PATHS = (
+  BASE_DIR + '/midnight/locale',
+)
 
 TIME_ZONE = 'UTC'
 

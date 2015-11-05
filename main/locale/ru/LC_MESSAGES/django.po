@@ -166,3 +166,6 @@ msgstr "Код с картинки"
 
 msgid "Additional"
 msgstr "Дополнительно"
+
+msgid "Profile"
+msgstr "Профиль"

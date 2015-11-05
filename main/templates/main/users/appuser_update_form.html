@@ -1,11 +1,15 @@
 {% extends "layouts/base.html" %}
-{% load bootstrap %}
+{% load i18n bootstrap %}
+
+{% block title %}{% trans "Profile" %}{% endblock %}
 
 {% block content %}
 
+    <h1>{% trans "Profile" %}</h1>
+
     <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
         {{ form|bootstrap }}
-        <input type="submit" class="btn btn-primary"  value="Update" />
+        <input type="submit" class="btn btn-primary"  value="{% trans "Submit" %}" />
     </form>
 
 {% endblock %}

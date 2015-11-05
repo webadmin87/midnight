@@ -5,6 +5,7 @@
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
+<h1>{% trans "Register for an account" %}</h1>
 <form method="post" action="">
     {% csrf_token %}
     {{ form|bootstrap }}
