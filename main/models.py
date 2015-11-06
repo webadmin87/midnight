@@ -11,18 +11,18 @@ from django.conf import settings
 
 class AppUser(AbstractUser):
 
-    phone = models.CharField(blank=True, max_length=10, verbose_name=_(u'Phone'))
+    phone = models.CharField(blank=True, max_length=10, verbose_name=_('Phone'))
 
-    image = ImageField(upload_to='users', verbose_name=_(u'Image'), blank=True)
+    image = ImageField(upload_to='users', verbose_name=_('Image'), blank=True)
 
     objects = UserManager()
 
 
 class Base(models.Model):
 
-    active = models.BooleanField(default=True, verbose_name=_(u'Active'))
+    active = models.BooleanField(default=True, verbose_name=_('Active'))
 
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(u'Author'))
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'))
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -35,11 +35,11 @@ class Base(models.Model):
 
 class BaseTree(MPTTModel):
 
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True, verbose_name=_(u'Parent'))
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True, verbose_name=_('Parent'))
 
-    active = models.BooleanField(default=True, verbose_name=_(u'Active'))
+    active = models.BooleanField(default=True, verbose_name=_('Active'))
 
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(u'Author'))
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'))
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -61,25 +61,25 @@ class BaseTree(MPTTModel):
 
 class Page(BaseTree):
 
-    title = models.CharField(max_length=500, verbose_name=_(u'Title'))
+    title = models.CharField(max_length=500, verbose_name=_('Title'))
 
-    slug = models.SlugField(max_length=255, unique=True, verbose_name=_(u'Slug'))
+    slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
-    text = RedactorField(blank=True, verbose_name=_(u'Text'))
+    text = RedactorField(blank=True, verbose_name=_('Text'))
 
-    sort = models.IntegerField(default=500, verbose_name=_(u'Sort'))
+    sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
-    metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_(u'MetaTitle'))
+    metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_('MetaTitle'))
 
-    keywords = models.CharField(max_length=2000, blank=True, verbose_name=_(u'Keywords'))
+    keywords = models.CharField(max_length=2000, blank=True, verbose_name=_('Keywords'))
 
-    description = models.CharField(max_length=2000, blank=True, verbose_name=_(u'Description'))
+    description = models.CharField(max_length=2000, blank=True, verbose_name=_('Description'))
 
     def get_absolute_url(self):
         return reverse('main:page_detail', kwargs={'path': self.get_path()})
 
-    def __unicode__(self):
-        return u'%s' % (self.title)
+    def __str__(self):
+        return self.title
 
     class MPTTMeta:
 
@@ -87,50 +87,50 @@ class Page(BaseTree):
 
     class Meta:
 
-        verbose_name = _(u'Page')
+        verbose_name = _('Page')
 
-        verbose_name_plural = _(u'Pages')
+        verbose_name_plural = _('Pages')
 
 
 class IncludeArea(Base):
 
-    title = models.CharField(max_length=500, verbose_name=_(u'Title'))
+    title = models.CharField(max_length=500, verbose_name=_('Title'))
 
-    slug = models.SlugField(max_length=255, unique=True, verbose_name=_(u'Slug'))
+    slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
-    text = RedactorField(blank=True, verbose_name=_(u'Text'))
+    text = RedactorField(blank=True, verbose_name=_('Text'))
 
-    def __unicode__(self):
-        return u'%s' % (self.title)
+    def __str__(self):
+        return self.title
 
     class Meta:
 
-        verbose_name = _(u'IncludeArea')
+        verbose_name = _('IncludeArea')
 
-        verbose_name_plural = _(u'IncludeAreas')
+        verbose_name_plural = _('IncludeAreas')
 
 
 class Menu(BaseTree):
 
     TARGET_CHOICES = (
-        ('_self', _(u'Self window')),
-        ('_blank', _(u'Blank window')),
+        ('_self', _('Self window')),
+        ('_blank', _('Blank window')),
     )
 
-    title = models.CharField(max_length=255, verbose_name=_(u'Title'))
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
 
-    link = models.CharField(max_length=2000, blank=True, verbose_name=_(u'Link'))
+    link = models.CharField(max_length=2000, blank=True, verbose_name=_('Link'))
 
-    slug = models.SlugField(max_length=255, blank=True, verbose_name=_(u'Slug'))
+    slug = models.SlugField(max_length=255, blank=True, verbose_name=_('Slug'))
 
-    target = models.CharField(max_length=32, blank=True, verbose_name=_(u'Target'), choices=TARGET_CHOICES)
+    target = models.CharField(max_length=32, blank=True, verbose_name=_('Target'), choices=TARGET_CHOICES)
 
-    cls = models.CharField(max_length=255, blank=True, verbose_name=_(u'Cls'))
+    cls = models.CharField(max_length=255, blank=True, verbose_name=_('Cls'))
 
-    sort = models.IntegerField(default=500, verbose_name=_(u'Sort'))
+    sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
-    def __unicode__(self):
-        return u'%s' % (self.title)
+    def __str__(self):
+        return self.title
 
     class MPTTMeta:
 
@@ -138,44 +138,44 @@ class Menu(BaseTree):
 
     class Meta:
 
-        verbose_name = _(u'Menu')
+        verbose_name = _('Menu')
 
-        verbose_name_plural = _(u'Menu')
+        verbose_name_plural = _('Menu')
 
 
 class PhotoAlbum(Base):
 
-    title = models.CharField(max_length=500, verbose_name=_(u'Title'))
+    title = models.CharField(max_length=500, verbose_name=_('Title'))
 
-    slug = models.SlugField(max_length=255, unique=True, verbose_name=_(u'Slug'))
+    slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
-    text = RedactorField(blank=True, verbose_name=_(u'Text'))
+    text = RedactorField(blank=True, verbose_name=_('Text'))
 
-    def __unicode__(self):
-        return u'%s' % (self.title)
+    def __str__(self):
+        return self.title
 
     class Meta:
 
-        verbose_name = _(u'PhotoAlbum')
+        verbose_name = _('PhotoAlbum')
 
-        verbose_name_plural = _(u'PhotoAlbums')
+        verbose_name_plural = _('PhotoAlbums')
 
 
 class Photo(Base):
 
-    title = models.CharField(max_length=500, verbose_name=_(u'Title'))
+    title = models.CharField(max_length=500, verbose_name=_('Title'))
 
-    image = ImageField(upload_to='photos', verbose_name=_(u'Image'))
+    image = ImageField(upload_to='photos', verbose_name=_('Image'))
 
-    album = models.ForeignKey(PhotoAlbum, verbose_name=_(u'PhotoAlbum'))
+    album = models.ForeignKey(PhotoAlbum, verbose_name=_('PhotoAlbum'))
 
-    sort = models.IntegerField(default=500, verbose_name=_(u'Sort'))
+    sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
-    def __unicode__(self):
-        return u'%s' % (self.title)
+    def __str__(self):
+        return self.title
 
     class Meta:
 
-        verbose_name = _(u'Photo')
+        verbose_name = _('Photo')
 
-        verbose_name_plural = _(u'Photos')
+        verbose_name_plural = _('Photos')
