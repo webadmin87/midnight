@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
@@ -45,6 +45,12 @@ class BaseTree(MPTTModel):
 
     update_at = models.DateTimeField(auto_now=True)
 
+    def get_path(self):
+        if hasattr(self, 'slug'):
+            return '/'.join([item.slug for item in self.get_ancestors(include_self=True)])
+        else:
+            return None
+
     def has_childs(self):
         count = self.children.count()
         return count > 0
@@ -53,7 +59,7 @@ class BaseTree(MPTTModel):
         abstract = True
 
 
-class Page(Base):
+class Page(BaseTree):
 
     title = models.CharField(max_length=500, verbose_name=_(u'Title'))
 
@@ -61,14 +67,23 @@ class Page(Base):
 
     text = RedactorField(blank=True, verbose_name=_(u'Text'))
 
+    sort = models.IntegerField(default=500, verbose_name=_(u'Sort'))
+
     metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_(u'MetaTitle'))
 
     keywords = models.CharField(max_length=2000, blank=True, verbose_name=_(u'Keywords'))
 
     description = models.CharField(max_length=2000, blank=True, verbose_name=_(u'Description'))
 
+    def get_absolute_url(self):
+        return reverse('main:page_detail', kwargs={'path': self.get_path()})
+
     def __unicode__(self):
         return u'%s' % (self.title)
+
+    class MPTTMeta:
+
+        order_insertion_by = ['sort']
 
     class Meta:
 

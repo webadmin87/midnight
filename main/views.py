@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from main.forms import Feedback, Profile
 from main.mailer import send_templated_mail
@@ -32,15 +33,23 @@ class UpdateProfile(UpdateView):
         return self.request.user
 
 
-def index(request, slug='main'):
+def pages(request, path=None, instance=None):
 
-    p = get_object_or_404(Page, slug=slug, active=True)
+    if instance and instance.active:
+        p = instance
+    else:
+        raise Http404()
 
     text = Template(p.text).render(Context())
-
     meta = MetaSeo(p)
+    return render(request, 'main/pages/pages.html', {'page': p, 'text': text, 'meta': meta})
 
-    return render(request, 'main/pages/index.html', {'page': p, 'text': text, 'meta': meta})
+
+def main_page(request):
+    p = get_object_or_404(Page, slug='main', active=True)
+    text = Template(p.text).render(Context())
+    meta = MetaSeo(p)
+    return render(request, 'main/pages/pages.html', {'page': p, 'text': text, 'meta': meta})
 
 
 @require_POST

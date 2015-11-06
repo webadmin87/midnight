@@ -25,21 +25,23 @@ class BaseAdminTree(BaseAdminAbstract, MPTTModelAdmin):
     pass
 
 
-class PageAdmin(BaseAdmin):
+class PageAdmin(BaseAdminTree):
 
     fieldsets = [
-        (None, {'fields':  ['title', 'slug', 'active', 'text']}),
+        (None, {'fields':  ['parent', 'title', 'slug', 'active', 'text', 'sort']}),
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
-    list_display = ('title', 'id', 'slug', 'active', 'public_link')
+    list_display = ('title', 'id', 'slug', 'active', 'sort', 'public_link')
 
     list_filter = ('active',)
 
     search_fields = ('id', 'title', 'slug',)
 
+    list_editable = ('sort',)
+
     def public_link(self, obj):
-        url=reverse('main:page_detail', args=[obj.slug])
+        url = obj.get_absolute_url()
         return '<a target="_blank" href="%s">%s</a>' % (url, url)
 
     public_link.allow_tags = True
