@@ -169,3 +169,6 @@ msgstr "Дополнительно"
 
 msgid "Profile"
 msgstr "Профиль"
+
+msgid "Main"
+msgstr "Главная"

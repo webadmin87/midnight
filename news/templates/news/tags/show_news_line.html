@@ -1,7 +1,7 @@
 {% load thumbnail %}
 {% load i18n %}
 
-<div{% for key, value in data.iteritems %} {{ key }} = "{{ value }}"{% endfor %}>
+<div{% for key, value in data.items %} {{ key }} = "{{ value }}"{% endfor %}>
 
     {% if section %}
         <h3>{{ section.title }}</h3>

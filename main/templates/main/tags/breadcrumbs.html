@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<ol{% for key, value in data.items %} {{ key }} = "{{ value }}"{% endfor %}>
+    <li><a href="/">{% trans "Main" %}</a></li>
+    {% for crumb in crumbs %}
+        <li>
+            {% if crumb.url %}
+                <a href="{{ crumb.url }}">{{ crumb.label }}</a>
+            {% else %}
+                <span>{{ crumb.label }}</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ol>

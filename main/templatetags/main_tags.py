@@ -55,3 +55,9 @@ def user_info(context):
     return {'user': request.user}
 
 register.inclusion_tag(file_name='main/tags/user_info.html', takes_context=True, name='user_info')(user_info)
+
+
+def breadcrumbs(crumbs, **kwargs):
+    return {'crumbs': crumbs, 'data': kwargs}
+
+register.inclusion_tag(file_name='main/tags/breadcrumbs.html', name='breadcrumbs')(breadcrumbs)

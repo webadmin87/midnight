@@ -42,7 +42,7 @@ def pages(request, path=None, instance=None):
 
     text = Template(p.text).render(Context())
     meta = MetaSeo(p)
-    return render(request, 'main/pages/pages.html', {'page': p, 'text': text, 'meta': meta})
+    return render(request, 'main/pages/pages.html', {'page': p, 'text': text, 'meta': meta, 'crumbs': p.get_breadcrumbs()})
 
 
 def main_page(request):

@@ -81,6 +81,9 @@ class Page(BaseTree):
     def __str__(self):
         return self.title
 
+    def get_breadcrumbs(self):
+        return [{'label': item.title, 'url': item.get_absolute_url()} for item in self.get_ancestors()]+[{'label': self.title}]
+
     class MPTTMeta:
 
         order_insertion_by = ['sort']
