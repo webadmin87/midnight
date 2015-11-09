@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 from main.admin import BaseAdmin, BaseAdminTree
 from news.models import Section, News
@@ -20,7 +19,7 @@ class SectionAdmin(BaseAdminTree):
     search_fields = ('id', 'title', 'slug',)
 
     def public_link(self, obj):
-        url=reverse('news:news_list', args=[obj.slug])
+        url = obj.get_absolute_url()
         return '<a target="_blank" href="%s">%s</a>' % (url, url)
 
     public_link.allow_tags = True
@@ -55,8 +54,11 @@ class NewsAdmin(BaseAdmin):
 
     form = NewsForm
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related('sections')
+
     def public_link(self, obj):
-        url=reverse('news:news_detail', args=[obj.slug])
+        url = obj.get_absolute_url()
         return '<a target="_blank" href="%s">%s</a>' % (url, url)
 
     public_link.allow_tags = True

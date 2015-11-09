@@ -13,7 +13,7 @@ def show_news_line(slug=None, limit=3, **kwargs):
         section = Section.objects.get(slug=slug)
         q = News.objects.published().filter(sections__slug=slug)
 
-    models = q.order_by('-date', '-id').all()[:limit]
+    models = q.prefetch_related('sections').order_by('-date', '-id').all()[:limit]
 
     return {'models': models, 'section': section, 'data': kwargs}
 

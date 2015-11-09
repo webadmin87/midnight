@@ -59,7 +59,17 @@ class BaseTree(MPTTModel):
         abstract = True
 
 
-class Page(BaseTree):
+class BreadCrumbsMixin(object):
+    def get_breadcrumbs(self, self_url=False):
+        crumbs = [{'label': item.title, 'url': item.get_absolute_url()} for item in self.get_ancestors()]
+        if self_url:
+            crumbs += [{'label': self.title, 'url': self.get_absolute_url()}]
+        else:
+            crumbs += [{'label': self.title}]
+        return crumbs
+
+
+class Page(BreadCrumbsMixin, BaseTree):
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -80,9 +90,6 @@ class Page(BaseTree):
 
     def __str__(self):
         return self.title
-
-    def get_breadcrumbs(self):
-        return [{'label': item.title, 'url': item.get_absolute_url()} for item in self.get_ancestors()]+[{'label': self.title}]
 
     class MPTTMeta:
 

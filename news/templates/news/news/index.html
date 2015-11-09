@@ -22,13 +22,13 @@
 
         {% thumbnail item.image "150x150" crop="center" as im %}
             <div class="media-left">
-                <a href="{% url 'news:news_detail' slug=item.slug %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" /></a>
+                <a href="{% url 'news:news_detail' section_slug=item.sections.all.0.slug slug=item.slug %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" /></a>
             </div>
         {% endthumbnail %}
 
         <div class="media-body">
 
-            <h3><a href="{% url 'news:news_detail' slug=item.slug %}">{{ item.title }}</a></h3>
+            <h3><a href="{% url 'news:news_detail' section_slug=item.sections.all.0.slug slug=item.slug %}">{{ item.title }}</a></h3>
 
             <p>{{ item.annotation | safe }}</p>
 

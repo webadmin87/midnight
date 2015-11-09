@@ -9,3 +9,4 @@ django-bootstrap-pagination==1.5.1
 django-bootstrap-form
 django-simple-captcha==0.4.6
 django-registration-redux==1.2
+django-debug-toolbar==1.4

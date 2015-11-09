@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'bootstrapform',
     'captcha',
     'registration',
+    'debug_toolbar',
     'main',
     'news',
 )

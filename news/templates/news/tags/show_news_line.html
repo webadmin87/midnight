@@ -15,13 +15,13 @@
 
             {% thumbnail item.image "100x100" crop="center" as im %}
                 <div class="media-left">
-                    <a href="{% url 'news:news_detail' slug=item.slug %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" /></a>
+                    <a href="{% url 'news:news_detail' section_slug=item.sections.all.0.slug slug=item.slug %}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" /></a>
                 </div>
             {% endthumbnail %}
 
             <div class="media-body">
 
-                <h4><a href="{% url 'news:news_detail' slug=item.slug %}">{{ item.title }}</a></h4>
+                <h4><a href="{% url 'news:news_detail' section_slug=item.sections.all.0.slug slug=item.slug %}">{{ item.title }}</a></h4>
 
                 <p>{{ item.annotation | safe }}</p>
 

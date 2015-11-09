@@ -1,12 +1,13 @@
+from django.core.urlresolvers import reverse
 from django.db import models
-from main.models import BaseTree, Base
+from main.models import BaseTree, Base, BreadCrumbsMixin
 from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField
 from mptt.fields import TreeManyToManyField
 
 
-class Section(BaseTree):
+class Section(BreadCrumbsMixin, BaseTree):
 
     title = models.CharField(max_length=255, verbose_name=_('Title'))
 
@@ -19,6 +20,9 @@ class Section(BaseTree):
     keywords = models.CharField(max_length=2000, blank=True, verbose_name=_('Keywords'))
 
     description = models.CharField(max_length=2000, blank=True, verbose_name=_('Description'))
+
+    def get_absolute_url(self):
+        return reverse('news:news_list', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
@@ -55,6 +59,9 @@ class News(Base):
     keywords = models.CharField(max_length=2000, blank=True, verbose_name=_('Keywords'))
 
     description = models.CharField(max_length=2000, blank=True, verbose_name=_('Description'))
+
+    def get_absolute_url(self):
+        return reverse('news:news_detail', kwargs={'section_slug': self.sections.all()[0].slug, 'slug': self.slug})
 
     def __str__(self):
         return self.title
