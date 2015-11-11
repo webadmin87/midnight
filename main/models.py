@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import ForeignKey
 from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
@@ -56,6 +57,19 @@ class BaseTree(MPTTModel):
         return count > 0
 
     class Meta:
+        abstract = True
+
+
+class BaseComment(BaseTree):
+
+    username = models.CharField(max_length=255)
+
+    email = models.EmailField(max_length=255)
+
+    text = models.TextField()
+
+    class Meta:
+
         abstract = True
 
 
@@ -189,3 +203,18 @@ class Photo(Base):
         verbose_name = _('Photo')
 
         verbose_name_plural = _('Photos')
+
+
+class PageComment(BaseComment):
+
+    obj = ForeignKey(Page)
+
+    class MPTTMeta:
+
+        order_insertion_by = ['id']
+
+    class Meta:
+
+        verbose_name = _('PageComment')
+
+        verbose_name_plural = _('PageComment')
