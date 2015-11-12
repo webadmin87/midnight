@@ -1,16 +1,16 @@
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from main.forms import Feedback, Profile, PageCommentForm
+from main.forms import Feedback, Profile
 from main.mailer import send_templated_mail
-from midnight.components import MetaSeo
-from .models import Page, AppUser, PageComment
-from django.template import Template, Context
+from main.services import get_page_tpl_ctx, get_object_comments, post_comment
+from .models import Page, AppUser
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic.edit import UpdateView
 from django.contrib.auth import update_session_auth_hash
 from django.views.generic import View
+
 
 class UpdateProfile(UpdateView):
     model = AppUser
@@ -27,7 +27,7 @@ class UpdateProfile(UpdateView):
             user.set_password(form.data['password_change'])
             update_session_auth_hash(self.request, user)
 
-        return super(UpdateProfile, self).form_valid(form)
+        return super().form_valid(form)
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -40,20 +40,12 @@ def pages(request, path=None, instance=None):
     else:
         raise Http404()
 
-    text = Template(p.text).render(Context())
-    meta = MetaSeo(p)
-    comments = PageComment.objects.root_nodes().filter(obj__id=p.id).all()
-    form = PageCommentForm(initial={'obj': p})
-    return render(request, 'main/pages/pages.html', {'page': p, 'comments': comments, 'form': form, 'text': text, 'meta': meta, 'crumbs': p.get_breadcrumbs()})
+    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p))
 
 
 def main_page(request):
     p = get_object_or_404(Page, slug='main', active=True)
-    text = Template(p.text).render(Context())
-    meta = MetaSeo(p)
-    comments = PageComment.objects.root_nodes().filter(obj__id=p.id).all()
-    form = PageCommentForm(initial={'obj': p})
-    return render(request, 'main/pages/pages.html', {'page': p, 'comments': comments, 'form': form, 'text': text, 'meta': meta})
+    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p))
 
 
 @require_POST
@@ -81,19 +73,15 @@ class CommentView(View):
         self.form_cls = form_cls
 
     def get(self, request):
-        comments = self.model_cls.objects.root_nodes().filter(obj__id=request.GET.id).all()
+        comments = get_object_comments(self.model_cls, request.GET.id)
         return render(request, 'main/tags/comments_list.html', {'comments': comments})
 
     def post(self, request):
 
         form = self.form_cls(request.POST)
 
-        if form.is_valid():
-            model = form.save(commit=False)
-            model.author = request.user
-            model.save()
-            status = 200
-        else:
-            status = 422
+        res = post_comment(form, request.user)
+
+        status = 200 if res else 422
 
         return render(request, 'main/tags/comments_form_body.html', {'form': form}, status=status)

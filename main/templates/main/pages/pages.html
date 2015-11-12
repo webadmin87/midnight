@@ -11,9 +11,9 @@
 
 {{ text | safe }}
 
-    {% if form %}
+    {% if comments_form %}
 
-        {% comments comments form "main:page_comments" %}
+        {% comments comments comments_form page "main:page_comments" %}
 
     {% endif %}
 

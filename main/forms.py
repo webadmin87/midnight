@@ -47,3 +47,7 @@ class PageCommentForm(forms.ModelForm):
     class Meta:
         model = PageComment
         exclude = ('active', 'author')
+        widgets = {
+            'parent': forms.HiddenInput,
+            'obj': forms.HiddenInput,
+        }

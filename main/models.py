@@ -85,6 +85,8 @@ class BreadCrumbsMixin(object):
 
 class Page(BreadCrumbsMixin, BaseTree):
 
+    MAIN_SLUG = "main"
+
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
@@ -208,6 +210,9 @@ class Photo(Base):
 class PageComment(BaseComment):
 
     obj = ForeignKey(Page)
+
+    def __str__(self):
+        return self.username
 
     class MPTTMeta:
 
