@@ -40,12 +40,12 @@ def pages(request, path=None, instance=None):
     else:
         raise Http404()
 
-    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p))
+    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p, request))
 
 
 def main_page(request):
     p = get_object_or_404(Page, slug='main', active=True)
-    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p))
+    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p, request))
 
 
 @require_POST
@@ -68,13 +68,13 @@ class CommentView(View):
 
     form_cls = None
 
-    def __init__(self, model_cls, form_cls):
-        self.model_cls = model_cls
-        self.form_cls = form_cls
+    list_tpl = 'main/tags/comments_list.html'
+
+    form_tpl = 'main/tags/comments_form_body.html'
 
     def get(self, request):
         comments = get_object_comments(self.model_cls, request.GET.get('id', 0))
-        return render(request, 'main/tags/comments_list.html', {'comments': comments})
+        return render(request, self.list_tpl, {'comments': comments})
 
     def post(self, request):
 
@@ -84,4 +84,4 @@ class CommentView(View):
 
         status = 200 if res else 422
 
-        return render(request, 'main/tags/comments_form_body.html', {'form': form}, status=status)
+        return render(request, self.form_tpl, {'form': form}, status=status)

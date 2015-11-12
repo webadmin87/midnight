@@ -5,11 +5,15 @@ from main.models import PageComment, Page
 from midnight.components import MetaSeo
 
 
-def get_page_tpl_ctx(page):
+def get_page_tpl_ctx(page, request):
     text = Template(page.text).render(Context())
     meta = MetaSeo(page)
     comments = get_object_comments(PageComment, page.id)
-    comments_form = PageCommentForm(initial={'obj': page})
+    if request.user.is_authenticated():
+        init = {'obj': page, 'username': request.user.username, 'email': request.user.email}
+    else:
+        init = {'obj': page}
+    comments_form = PageCommentForm(initial=init)
     if page.slug == Page.MAIN_SLUG:
         crumbs = None
     else:
