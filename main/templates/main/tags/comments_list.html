@@ -1,11 +1,13 @@
-{% load mptt_tags i18n %}
+{% load mptt_tags i18n bbcode_tags %}
 
 <ul>
     {% recursetree comments %}
         <li>
-            {{ node.username }}{% if node.email %} <a rel="nofollow" href="mailto:{{ node.email }}">{{ node.email }}</a>{% endif %}
-            {{ node.create_at }} [<a rel="nofollow" href="#comments-form" class="answer-comment" data-id="{{ node.id }}" data-username="{{ node.username }}">{% trans "answer comment" %}</a>]
-            <div class="comments-text">{{ node.text }}</div>
+            <strong>{{ node.username }}</strong>{% if node.email %} <a rel="nofollow" href="mailto:{{ node.email }}">{{ node.email }}</a>{% endif %}
+            {{ node.created_at }}
+            [<a rel="nofollow" href="#comments-form" class="answer-comment" data-id="{{ node.id }}" data-username="{{ node.username }}">{% trans "answer comment" %}</a>]
+            [<a rel="nofollow" href="#comments-form" class="quote-comment" data-id="{{ node.id }}" data-username="{{ node.username }}" data-text="{{ node.text }}">{% trans "quote comment" %}</a>]
+            <div class="comments-text">{{ node.text | bbcode | safe }}</div>
             {% if not node.is_leaf_node %}
                 <ul class="children">
                     {{ children }}

@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'captcha',
     'registration',
     'debug_toolbar',
+    'precise_bbcode',
     'main',
     'news',
 )

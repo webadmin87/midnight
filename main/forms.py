@@ -44,6 +44,9 @@ class Profile(forms.ModelForm):
 
 
 class PageCommentForm(forms.ModelForm):
+
+    captcha = CaptchaField(label=_('Captcha'))
+
     class Meta:
         model = PageComment
         exclude = ('active', 'author')

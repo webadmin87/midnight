@@ -10,3 +10,4 @@ django-bootstrap-form
 django-simple-captcha==0.4.6
 django-registration-redux==1.2
 django-debug-toolbar==1.4
+django-precise-bbcode==1.0.10

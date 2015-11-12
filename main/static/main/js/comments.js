@@ -13,7 +13,12 @@
             var form = bl.find('form');
 
             commentsList.on('click', '.answer-comment', function(){
-                answer.apply(this);
+                answer($(this).data("id"), $(this).data("username"));
+            });
+
+            commentsList.on('click', '.quote-comment', function(){
+                answer($(this).data("id"), $(this).data("username"));
+                quote($(this).data("text"));
             });
 
             bl.find('.cancel-answer').on('click', function(e){
@@ -33,15 +38,19 @@
 
                     commentsList.load(form.attr('action') + "?id=" + form.find('[name="obj"]').val());
 
+                    answerCancel();
+
+                    clearForm(form);
+
                 }).fail(function (xhr, textStatus, errorThrown) {
                         formBody.html(xhr.responseText);
                 });
 
             });
 
-            function answer() {
-                form.find('[name="parent"]').val($(this).data("id"));
-                bl.find('.answer-name').html($(this).data("username"));
+            function answer(id, username) {
+                form.find('[name="parent"]').val(id);
+                bl.find('.answer-name').html(username);
                 bl.find('.answer-info').show();
             }
 
@@ -49,6 +58,22 @@
                 form.find('[name="parent"]').val('');
                 bl.find('.answer-name').html('');
                 bl.find('.answer-info').hide();
+            }
+
+            function quote(text) {
+
+                var txt = form.find("[name='text']");
+
+                var val = txt.val();
+
+                txt.val(val+'[quote]'+text+'[/quote]');
+
+            }
+
+            function clearForm(form)
+            {
+                form.find(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
+                form.find(':checkbox, :radio').prop('checked', false);
             }
 
         });
