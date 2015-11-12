@@ -3,10 +3,13 @@
 <ul>
     {% recursetree comments %}
         <li>
-            <strong>{{ node.username }}</strong>{% if node.email %} <a rel="nofollow" href="mailto:{{ node.email }}">{{ node.email }}</a>{% endif %}
-            {{ node.created_at }}
-            [<a rel="nofollow" href="#comments-form" class="answer-comment" data-id="{{ node.id }}" data-username="{{ node.username }}">{% trans "answer comment" %}</a>]
-            [<a rel="nofollow" href="#comments-form" class="quote-comment" data-id="{{ node.id }}" data-username="{{ node.username }}" data-text="{{ node.text }}">{% trans "quote comment" %}</a>]
+            <div class="comments-author">
+                <strong>{{ node.username }}</strong>{% if node.email %} <a rel="nofollow" href="mailto:{{ node.email }}">{{ node.email }}</a>{% endif %}
+                {{ node.created_at }}
+                [<a rel="nofollow" href="#comments-form" class="answer-comment" data-id="{{ node.id }}" data-username="{{ node.username }}">{% trans "answer comment" %}</a>]
+                [<a rel="nofollow" href="#comments-form" class="quote-comment" data-id="{{ node.id }}" data-username="{{ node.username }}" data-text="{{ node.text }}">{% trans "quote comment" %}</a>]
+            </div>
+
             <div class="comments-text">{{ node.text | bbcode | safe }}</div>
             {% if not node.is_leaf_node %}
                 <ul class="children">
@@ -16,3 +19,7 @@
         </li>
     {% endrecursetree %}
 </ul>
+
+{% if not comments %}
+    <p>{% trans "Be firts who leave comment" %}</p>
+{% endif %}

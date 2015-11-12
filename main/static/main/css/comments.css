@@ -1,0 +1,34 @@
+.comments-block .comments-list>ul {
+    margin: 0;
+    padding: 0;
+}
+
+.comments-block .comments-list li ul {
+    padding-left: 30px;
+}
+
+.comments-block .comments-list li {
+    list-style-type: none;
+    padding-bottom: 10px;
+}
+
+.comments-block .comments-author {
+    padding: 4px;
+    background: #f5fce5;
+    border-radius: 2px;
+}
+
+.comments-block .comments-text {
+    padding: 10px 4px;
+}
+
+.comments-block .answer-info {
+    margin-bottom: 10px;
+    padding: 4px;
+    background: #f5f5f5;
+    border-radius: 2px;
+}
+
+.comments-block .answer-name {
+    font-weight: bold;
+}
