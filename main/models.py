@@ -64,7 +64,7 @@ class BaseComment(BaseTree):
 
     username = models.CharField(max_length=255)
 
-    email = models.EmailField(max_length=255)
+    email = models.EmailField(max_length=255, blank=True)
 
     text = models.TextField()
 
@@ -211,7 +211,7 @@ class PageComment(BaseComment):
 
     class MPTTMeta:
 
-        order_insertion_by = ['id']
+        order_insertion_by = ['created_at']
 
     class Meta:
 

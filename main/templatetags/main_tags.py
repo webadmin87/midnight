@@ -61,3 +61,10 @@ def breadcrumbs(crumbs, **kwargs):
     return {'crumbs': crumbs, 'data': kwargs}
 
 register.inclusion_tag(file_name='main/tags/breadcrumbs.html', name='breadcrumbs')(breadcrumbs)
+
+
+def comments_block(comments, form, url, **kwargs):
+
+    return {'comments': comments, 'form': form, 'url': url, 'data': kwargs}
+
+register.inclusion_tag(file_name='main/tags/comments.html', name='comments')(comments_block)

@@ -3,7 +3,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
 
-from main.models import AppUser
+from main.models import AppUser, PageComment
 from midnight.widgets import AdminImageWidget
 
 
@@ -41,3 +41,9 @@ class Profile(forms.ModelForm):
         widgets = {
             'image': AdminImageWidget,
         }
+
+
+class PageCommentForm(forms.ModelForm):
+    class Meta:
+        model = PageComment
+        exclude = ('active', 'author')

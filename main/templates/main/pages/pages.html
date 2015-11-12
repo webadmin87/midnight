@@ -1,5 +1,7 @@
 {% extends "layouts/base.html" %}
 
+{% load main_tags %}
+
 {% block title %}{{ meta.metatitle }}{% endblock %}
 {% block keywords %}{{ meta.keywords }}{% endblock %}
 {% block description %}{{ meta.description }}{% endblock %}
@@ -8,5 +10,11 @@
 <h1>{{ page.title }}</h1>
 
 {{ text | safe }}
+
+    {% if form %}
+
+        {% comments comments form "main:page_comments" %}
+
+    {% endif %}
 
 {% endblock %}

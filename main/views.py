@@ -1,16 +1,16 @@
 from django.core.urlresolvers import reverse
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, get_object_or_404
-from main.forms import Feedback, Profile
+from main.forms import Feedback, Profile, PageCommentForm
 from main.mailer import send_templated_mail
 from midnight.components import MetaSeo
-from .models import Page, AppUser
+from .models import Page, AppUser, PageComment
 from django.template import Template, Context
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic.edit import UpdateView
 from django.contrib.auth import update_session_auth_hash
-
+from django.views.generic import View
 
 class UpdateProfile(UpdateView):
     model = AppUser
@@ -42,14 +42,18 @@ def pages(request, path=None, instance=None):
 
     text = Template(p.text).render(Context())
     meta = MetaSeo(p)
-    return render(request, 'main/pages/pages.html', {'page': p, 'text': text, 'meta': meta, 'crumbs': p.get_breadcrumbs()})
+    comments = PageComment.objects.root_nodes().filter(obj__id=p.id).all()
+    form = PageCommentForm(initial={'obj': p})
+    return render(request, 'main/pages/pages.html', {'page': p, 'comments': comments, 'form': form, 'text': text, 'meta': meta, 'crumbs': p.get_breadcrumbs()})
 
 
 def main_page(request):
     p = get_object_or_404(Page, slug='main', active=True)
     text = Template(p.text).render(Context())
     meta = MetaSeo(p)
-    return render(request, 'main/pages/pages.html', {'page': p, 'text': text, 'meta': meta})
+    comments = PageComment.objects.root_nodes().filter(obj__id=p.id).all()
+    form = PageCommentForm(initial={'obj': p})
+    return render(request, 'main/pages/pages.html', {'page': p, 'comments': comments, 'form': form, 'text': text, 'meta': meta})
 
 
 @require_POST
@@ -64,3 +68,32 @@ def feedback(request):
         status = 422
 
     return render(request, 'main/tags/ajax_form_body.html', {'form': form}, status=status)
+
+
+class CommentView(View):
+
+    model_cls = None
+
+    form_cls = None
+
+    def __init__(self, model_cls, form_cls):
+        self.model_cls = model_cls
+        self.form_cls = form_cls
+
+    def get(self, request):
+        comments = self.model_cls.objects.root_nodes().filter(obj__id=request.GET.id).all()
+        return render(request, 'main/tags/comments_list.html', {'comments': comments})
+
+    def post(self, request):
+
+        form = self.form_cls(request.POST)
+
+        if form.is_valid():
+            model = form.save(commit=False)
+            model.author = request.user
+            model.save()
+            status = 200
+        else:
+            status = 422
+
+        return render(request, 'main/tags/comments_form_body.html', {'form': form}, status=status)

@@ -1,0 +1,21 @@
+{% load bootstrap i18n %}
+
+<div{% for key, value in data.items %} {{ key }} = "{{ value }}"{% endfor %}>
+
+    <div class="comments-list">
+
+        {% include "main/tags/comments_list.html" %}
+
+    </div>
+
+    <form action="{% url url %}" method="post">
+
+        <div class="comments-form-body">
+
+            {% include "main/tags/comments_form_body.html" %}
+
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="{% trans "Sumbit" %}" />
+    </form>
+</div>

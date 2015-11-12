@@ -134,3 +134,15 @@ class AppUserAdmin(UserAdmin):
     )
 
 admin.site.register(AppUser, AppUserAdmin)
+
+
+class PageCommentAdmin(BaseAdminTree):
+
+    exclude = ('author',)
+
+    list_display = ('id', 'obj', 'username', 'email', 'text')
+
+    search_fields = ('id', 'username', 'email',)
+
+admin.site.register(PageComment, PageCommentAdmin)
+
