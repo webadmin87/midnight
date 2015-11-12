@@ -1,9 +1,10 @@
-{% load mptt_tags %}
+{% load mptt_tags i18n %}
 
 <ul>
     {% recursetree comments %}
         <li>
-            {{ node.username }} | {{ node.email }}
+            {{ node.username }}{% if node.email %} <a rel="nofollow" href="mailto:{{ node.email }}">{{ node.email }}</a>{% endif %}
+            {{ node.create_at }} [<a rel="nofollow" href="#comments-form" class="answer-comment" data-id="{{ node.id }}" data-username="{{ node.username }}">{% trans "answer comment" %}</a>]
             <div class="comments-text">{{ node.text }}</div>
             {% if not node.is_leaf_node %}
                 <ul class="children">

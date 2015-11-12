@@ -8,7 +8,12 @@
 
     </div>
 
-    <form action="{% url url %}" method="post">
+    <form id="comments-form" action="{% url url %}" method="post">
+
+        <div class="answer-info" style="display: none">
+            {% trans "Answer for" %}: <span class="answer-name"></span>
+            [<a rel="nofollow" href="" class="cancel-answer">{% trans "cancel" %}</a>]
+        </div>
 
         <div class="comments-form-body">
 
@@ -16,6 +21,6 @@
 
         </div>
 
-        <input type="submit" class="btn btn-primary" value="{% trans "Sumbit" %}" />
+        <input type="submit" class="btn btn-primary" value="{% trans "Submit" %}" />
     </form>
 </div>

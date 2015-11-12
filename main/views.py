@@ -73,7 +73,7 @@ class CommentView(View):
         self.form_cls = form_cls
 
     def get(self, request):
-        comments = get_object_comments(self.model_cls, request.GET.id)
+        comments = get_object_comments(self.model_cls, request.GET.get('id', 0))
         return render(request, 'main/tags/comments_list.html', {'comments': comments})
 
     def post(self, request):

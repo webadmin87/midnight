@@ -65,6 +65,13 @@ register.inclusion_tag(file_name='main/tags/breadcrumbs.html', name='breadcrumbs
 
 def comments_block(comments, form, obj, url, **kwargs):
 
-    return {'comments': comments, 'form': form, 'url': url, 'obj': obj, 'data': kwargs}
+    data = kwargs
+
+    if 'class' in data:
+        data['class'] += ' comments-block'
+    else:
+        data['class'] = 'comments-block'
+
+    return {'comments': comments, 'form': form, 'url': url, 'obj': obj, 'data': data}
 
 register.inclusion_tag(file_name='main/tags/comments.html', name='comments')(comments_block)

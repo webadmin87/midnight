@@ -10,6 +10,10 @@
 
         $(".ajax-form").ajaxForm();
 
+        // Инициализация комментариев
+
+        $('.comments-block').commentsBlock();
+
     });
 
 })(jQuery);
