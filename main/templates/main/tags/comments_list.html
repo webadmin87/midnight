@@ -3,11 +3,15 @@
 <ul>
     {% recursetree comments %}
         <li>
-            <div class="comments-author">
-                <strong>{{ node.username }}</strong>{% if node.email %} <a rel="nofollow" href="mailto:{{ node.email }}">{{ node.email }}</a>{% endif %}
-                {{ node.created_at }}
-                [<a rel="nofollow" href="#comments-form" class="answer-comment" data-id="{{ node.id }}" data-username="{{ node.username }}">{% trans "answer comment" %}</a>]
-                [<a rel="nofollow" href="#comments-form" class="quote-comment" data-id="{{ node.id }}" data-username="{{ node.username }}" data-text="{{ node.text }}">{% trans "quote comment" %}</a>]
+            <div class="comments-author clearfix">
+                <div class="comments-author-left">
+                    <strong>{{ node.username }}</strong>{% if node.email %} <a rel="nofollow" href="mailto:{{ node.email }}">{{ node.email }}</a>{% endif %}
+                    {{ node.created_at }}
+                </div>
+                <div class="comments-author-right">
+                    [<a rel="nofollow" href="#comments-form" class="answer-comment" data-id="{{ node.id }}" data-username="{{ node.username }}">{% trans "answer comment" %}</a>]
+                    [<a rel="nofollow" href="#comments-form" class="quote-comment" data-id="{{ node.id }}" data-username="{{ node.username }}" data-text="{{ node.text }}">{% trans "quote comment" %}</a>]
+                </div>
             </div>
 
             <div class="comments-text">{{ node.text | bbcode | safe }}</div>

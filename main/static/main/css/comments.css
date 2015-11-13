@@ -18,6 +18,14 @@
     border-radius: 2px;
 }
 
+.comments-block .comments-author-left {
+    float: left;
+}
+
+.comments-block .comments-author-right {
+    float: right;
+}
+
 .comments-block .comments-text {
     padding: 10px 4px;
 }
