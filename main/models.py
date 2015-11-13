@@ -95,6 +95,8 @@ class Page(BreadCrumbsMixin, BaseTree):
 
     sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
+    comments = models.BooleanField(default=False, verbose_name=_('Comments'))
+
     metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_('MetaTitle'))
 
     keywords = models.CharField(max_length=2000, blank=True, verbose_name=_('Keywords'))

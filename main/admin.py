@@ -28,7 +28,7 @@ class BaseAdminTree(BaseAdminAbstract, MPTTModelAdmin):
 class PageAdmin(BaseAdminTree):
 
     fieldsets = [
-        (None, {'fields':  ['parent', 'title', 'slug', 'active', 'text', 'sort']}),
+        (None, {'fields':  ['parent', 'title', 'slug', 'active', 'text', 'sort', 'comments']}),
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
@@ -140,9 +140,15 @@ class PageCommentAdmin(BaseAdminTree):
 
     exclude = ('author',)
 
-    list_display = ('id', 'obj', 'username', 'email', 'text')
+    list_display = ('id', 'username', 'email', 'text', 'page_obj',)
 
     search_fields = ('id', 'username', 'email',)
+
+    def page_obj(self, comment):
+        return '<a href="%s">%s</a>' % (comment.obj.get_absolute_url(), comment.obj.title)
+
+    page_obj.allow_tags = True
+    page_obj.short_description = _('Page')
 
 admin.site.register(PageComment, PageCommentAdmin)
 

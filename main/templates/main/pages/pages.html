@@ -11,7 +11,7 @@
 
 {{ text | safe }}
 
-    {% if comments_form %}
+    {% if page.comments %}
 
         {% comments comments comments_form page "main:page_comments" %}
 
