@@ -6,7 +6,6 @@ from main.mailer import send_templated_mail
 from main.services import get_page_tpl_ctx, get_object_comments, post_comment
 from .models import Page, AppUser
 from django.utils.translation import ugettext_lazy as _
-from django.views.decorators.http import require_POST
 from django.views.generic.edit import UpdateView
 from django.contrib.auth import update_session_auth_hash
 from django.views.generic import View
@@ -48,18 +47,27 @@ def main_page(request):
     return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p, request))
 
 
-@require_POST
-def feedback(request):
+class FeedbackView(View):
 
-    form = Feedback(request.POST)
+    form_cls = None
 
-    if form.is_valid():
-        send_templated_mail('main/mails/feedback.html', _('Feedback message'), form)
-        status = 200
-    else:
-        status = 422
+    subject = 'Feedback message'
 
-    return render(request, 'main/tags/ajax_form_body.html', {'form': form}, status=status)
+    mail_tpl = 'main/mails/feedback.html'
+
+    form_tpl = 'main/tags/ajax_form_body.html'
+
+    def post(self, request):
+
+        form = self.form_cls(request.POST)
+
+        if form.is_valid():
+            send_templated_mail(self.mail_tpl, _(self.subject), form)
+            status = 200
+        else:
+            status = 422
+
+        return render(request, self.form_tpl, {'form': form}, status=status)
 
 
 class CommentView(View):
