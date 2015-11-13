@@ -62,11 +62,11 @@ class BaseTree(MPTTModel):
 
 class BaseComment(BaseTree):
 
-    username = models.CharField(max_length=255)
+    username = models.CharField(max_length=255, verbose_name=_('Username'))
 
-    email = models.EmailField(max_length=255, blank=True)
+    email = models.EmailField(max_length=255, blank=True, verbose_name=_('Email'))
 
-    text = models.TextField()
+    text = models.TextField(verbose_name=_('Comment'))
 
     class Meta:
 

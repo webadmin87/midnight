@@ -30,6 +30,8 @@
 
                 e.preventDefault();
 
+                bl.find('.alert').hide();
+
                 var data = form.serialize();
 
                 $.post(form.attr('action'), data).done(function (data) {
@@ -42,8 +44,11 @@
 
                     clearForm(form);
 
+                    bl.find('.alert-success').show();
+
                 }).fail(function (xhr, textStatus, errorThrown) {
                         formBody.html(xhr.responseText);
+                        bl.find('.alert-danger').show();
                 });
 
             });
