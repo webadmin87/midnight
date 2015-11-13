@@ -2,10 +2,20 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import sorl.thumbnail.fields
 import redactor.fields
 import mptt.fields
+import main.models
 from django.conf import settings
+import sorl.thumbnail.fields
+from news.models import Section, News
+import datetime
+
+
+def create_news(*args):
+    author = main.models.AppUser.objects.first()
+    section = Section.objects.create(title="Новости компании", slug="company", author=author)
+    news = News.objects.create(title='Поздравляем!', slug='welcome', annotation='Вы успешно установили систему.', text='Вы успешно установили систему.', date=datetime.date.today())
+    news.sections.add(section)
 
 
 class Migration(migrations.Migration):
@@ -18,54 +28,59 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='News',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('active', models.BooleanField(default=True, verbose_name='Active')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('update_at', models.DateTimeField(auto_now=True)),
                 ('title', models.CharField(max_length=255, verbose_name='Title')),
-                ('slug', models.SlugField(unique=True, max_length=255, verbose_name='Slug')),
-                ('date', models.DateField(verbose_name='Date', blank=True)),
-                ('image', sorl.thumbnail.fields.ImageField(upload_to=b'news', verbose_name='Image', blank=True)),
-                ('annotation', models.TextField(verbose_name='Annotation', blank=True)),
-                ('text', redactor.fields.RedactorField(verbose_name='Text', blank=True)),
-                ('metatitle', models.CharField(max_length=2000, verbose_name='Title', blank=True)),
-                ('keywords', models.CharField(max_length=2000, verbose_name='Keywords', blank=True)),
-                ('description', models.CharField(max_length=2000, verbose_name='Description', blank=True)),
-                ('author', models.ForeignKey(verbose_name='Author', to=settings.AUTH_USER_MODEL)),
+                ('slug', models.SlugField(max_length=255, unique=True, verbose_name='Slug')),
+                ('date', models.DateField(blank=True, verbose_name='Date')),
+                ('image', sorl.thumbnail.fields.ImageField(blank=True, upload_to='news', verbose_name='Image')),
+                ('annotation', models.TextField(blank=True, verbose_name='Annotation')),
+                ('text', redactor.fields.RedactorField(blank=True, verbose_name='Text')),
+                ('metatitle', models.CharField(max_length=2000, blank=True, verbose_name='Title')),
+                ('keywords', models.CharField(max_length=2000, blank=True, verbose_name='Keywords')),
+                ('description', models.CharField(max_length=2000, blank=True, verbose_name='Description')),
+                ('author', models.ForeignKey(null=True, verbose_name='Author', blank=True, to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'verbose_name': 'NewsItem',
                 'verbose_name_plural': 'News',
+                'verbose_name': 'NewsItem',
             },
         ),
         migrations.CreateModel(
             name='Section',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('active', models.BooleanField(default=True, verbose_name='Active')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('update_at', models.DateTimeField(auto_now=True)),
                 ('title', models.CharField(max_length=255, verbose_name='Title')),
-                ('slug', models.SlugField(unique=True, max_length=255, verbose_name='Slug')),
+                ('slug', models.SlugField(max_length=255, unique=True, verbose_name='Slug')),
                 ('sort', models.IntegerField(default=500, verbose_name='Sort')),
-                ('metatitle', models.CharField(max_length=2000, verbose_name='Title', blank=True)),
-                ('keywords', models.CharField(max_length=2000, verbose_name='Keywords', blank=True)),
-                ('description', models.CharField(max_length=2000, verbose_name='Description', blank=True)),
-                ('lft', models.PositiveIntegerField(editable=False, db_index=True)),
-                ('rght', models.PositiveIntegerField(editable=False, db_index=True)),
-                ('tree_id', models.PositiveIntegerField(editable=False, db_index=True)),
-                ('level', models.PositiveIntegerField(editable=False, db_index=True)),
-                ('author', models.ForeignKey(verbose_name='Author', to=settings.AUTH_USER_MODEL)),
-                ('parent', mptt.fields.TreeForeignKey(related_name='children', verbose_name='Parent', blank=True, to='news.Section', null=True)),
+                ('metatitle', models.CharField(max_length=2000, blank=True, verbose_name='Title')),
+                ('keywords', models.CharField(max_length=2000, blank=True, verbose_name='Keywords')),
+                ('description', models.CharField(max_length=2000, blank=True, verbose_name='Description')),
+                ('lft', models.PositiveIntegerField(db_index=True, editable=False)),
+                ('rght', models.PositiveIntegerField(db_index=True, editable=False)),
+                ('tree_id', models.PositiveIntegerField(db_index=True, editable=False)),
+                ('level', models.PositiveIntegerField(db_index=True, editable=False)),
+                ('author', models.ForeignKey(null=True, verbose_name='Author', blank=True, to=settings.AUTH_USER_MODEL)),
+                ('parent', mptt.fields.TreeForeignKey(null=True, verbose_name='Parent', blank=True, related_name='children', to='news.Section')),
             ],
             options={
-                'verbose_name': 'NewsSection',
                 'verbose_name_plural': 'NewsSections',
+                'verbose_name': 'NewsSection',
             },
+            bases=(main.models.BreadCrumbsMixin, models.Model),
         ),
         migrations.AddField(
             model_name='news',
             name='sections',
             field=mptt.fields.TreeManyToManyField(to='news.Section', verbose_name='Sections'),
         ),
+
+        migrations.RunPython(create_news)
+
     ]
+
