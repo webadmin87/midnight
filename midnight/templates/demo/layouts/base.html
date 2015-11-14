@@ -15,7 +15,7 @@
 
 	<link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet"/>
 	<link href="{% static "theme/css/styles.css" %}" rel="stylesheet"/>
-    {% assets "css_all" %}
+    {% assets "css_main" %}
         <link rel="stylesheet" href="{{ ASSET_URL }}" />
     {% endassets %}
 	</head>
@@ -74,7 +74,7 @@
 		
 	</div>
 
-{% assets "js_all" %}
+{% assets "js_main" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
 
