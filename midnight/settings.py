@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'precise_bbcode',
     'main',
     'news',
+    'banners'
 )
 
 # User model

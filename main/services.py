@@ -34,3 +34,14 @@ def post_comment(form, user):
         return True
     else:
         return False
+
+
+def save_formset_with_author(formset, user):
+    instances = formset.save(commit=False)
+    for obj in formset.deleted_objects:
+        obj.delete()
+    for instance in instances:
+        if user.is_authenticated() and hasattr(instance, 'author'):
+            instance.author = user
+        instance.save()
+    formset.save_m2m()
