@@ -1,0 +1,9 @@
+<ul{% for key, value in data.items %} {{ key }} = "{{ value }}"{% endfor %}>
+
+    {% for banner in rendered %}
+
+        <li>{{ banner | safe }}</li>
+
+    {% endfor %}
+
+</ul>

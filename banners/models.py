@@ -34,6 +34,10 @@ class Banner(Base):
 
     target = models.CharField(max_length=32, blank=True, verbose_name=_('Target'), choices=TARGET_CHOICES)
 
+    width = models.IntegerField(verbose_name=_('Width'))
+
+    height = models.IntegerField(verbose_name=_('Height'))
+
     text = models.TextField(blank=True, verbose_name=_('Text'))
 
     place = models.ForeignKey(BannerPlace, verbose_name=_('BannerPlace'))

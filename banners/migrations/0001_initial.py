@@ -15,17 +15,19 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Banner',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
                 ('active', models.BooleanField(verbose_name='Active', default=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('update_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=500, verbose_name='Title')),
-                ('file', models.FileField(upload_to='banners', verbose_name='File')),
-                ('link', models.CharField(max_length=2000, blank=True, verbose_name='Link')),
-                ('target', models.CharField(verbose_name='Target', choices=[('_self', 'Self window'), ('_blank', 'Blank window')], blank=True, max_length=32)),
+                ('title', models.CharField(verbose_name='Title', max_length=500)),
+                ('file', models.FileField(verbose_name='File', upload_to='banners')),
+                ('link', models.CharField(verbose_name='Link', blank=True, max_length=2000)),
+                ('target', models.CharField(verbose_name='Target', blank=True, choices=[('_self', 'Self window'), ('_blank', 'Blank window')], max_length=32)),
+                ('width', models.IntegerField(verbose_name='Width')),
+                ('height', models.IntegerField(verbose_name='Height')),
                 ('text', models.TextField(verbose_name='Text', blank=True)),
                 ('sort', models.IntegerField(verbose_name='Sort', default=500)),
-                ('author', models.ForeignKey(verbose_name='Author', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('author', models.ForeignKey(verbose_name='Author', to=settings.AUTH_USER_MODEL, null=True, blank=True)),
             ],
             options={
                 'verbose_name': 'Banner',
@@ -35,13 +37,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BannerPlace',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
                 ('active', models.BooleanField(verbose_name='Active', default=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('update_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=500, verbose_name='Title')),
-                ('slug', models.SlugField(max_length=255, verbose_name='Slug', unique=True)),
-                ('author', models.ForeignKey(verbose_name='Author', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('title', models.CharField(verbose_name='Title', max_length=500)),
+                ('slug', models.SlugField(verbose_name='Slug', max_length=255, unique=True)),
+                ('author', models.ForeignKey(verbose_name='Author', to=settings.AUTH_USER_MODEL, null=True, blank=True)),
             ],
             options={
                 'verbose_name': 'BannerPlace',

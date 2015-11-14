@@ -141,7 +141,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "www", "static", "bower_components"),
-    os.path.join(BASE_DIR, "main", "static"),
     os.path.join(BASE_DIR, "midnight", "static", "demo"),
 )
 
