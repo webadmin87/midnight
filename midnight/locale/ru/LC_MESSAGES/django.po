@@ -295,3 +295,5 @@ msgstr "Регистрация"
 msgid "Submit"
 msgstr "Отправить"
 
+msgid "Registration"
+msgstr "Регистрация"

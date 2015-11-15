@@ -221,6 +221,9 @@ msgstr "Поля отмеченные <strong>жирным</strong> обязат
 msgid "Comment"
 msgstr "Комментарий"
 
+msgid "Comments"
+msgstr "Комментарии"
+
 msgid "Leave comment"
 msgstr "Оставить комментарий"
 
