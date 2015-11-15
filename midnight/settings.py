@@ -13,17 +13,17 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from .settings_local import *
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+THEME_NAME = "demo"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%6fqr9$#ab!pwrw7yamrktl87e^@bc=fmujwr08s^o^led5^8j'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -45,12 +45,11 @@ INSTALLED_APPS = (
     'bootstrapform',
     'captcha',
     'registration',
-    'debug_toolbar',
     'precise_bbcode',
     'main',
     'news',
     'banners'
-)
+) + ADDITIONAL_APPS
 
 # User model
 
@@ -79,7 +78,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'midnight/templates/demo',
+            'midnight/templates/'+THEME_NAME,
             'midnight/templates/common',
         ],
         'APP_DIRS': True,
@@ -95,21 +94,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'midnight.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'midnight',
-        'USER': 'postgres',
-        'PASSWORD': 'xh48u56',
-        'HOST': '192.168.56.101'
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -141,7 +125,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "www", "static", "bower_components"),
-    os.path.join(BASE_DIR, "midnight", "static", "demo"),
+    os.path.join(BASE_DIR, "midnight", "static", THEME_NAME),
 )
 
 # Media storage
@@ -153,11 +137,6 @@ MEDIA_URL = '/userfiles/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
 
-# Email
-
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = '/tmp/emails'
-
 # Captcha
 
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
@@ -166,3 +145,8 @@ CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
+
+# Email accounts
+
+ADMIN_EMAIL = 'admin@example.com'
+MAIL_FROM = 'admin@example.com'

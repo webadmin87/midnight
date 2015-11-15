@@ -1,2 +1,3 @@
 **/*.pyc
 .idea
+/midnight/settings_local.py
