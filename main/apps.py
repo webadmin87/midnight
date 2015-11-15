@@ -7,3 +7,4 @@ class MainConfig(AppConfig):
     name = 'main'
 
     verbose_name = _('MainModule')
+

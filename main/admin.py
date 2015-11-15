@@ -3,9 +3,9 @@ from django.forms import ModelForm
 from main.models import *
 from django.contrib import admin
 from midnight.widgets import AdminImageWidget
-from django.core.urlresolvers import reverse
 from mptt.admin import MPTTModelAdmin
 from django.utils.translation import ugettext_lazy as _
+import main.admin_overrides
 
 
 class BaseAdminAbstract(object):
