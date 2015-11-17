@@ -130,8 +130,8 @@ STATICFILES_DIRS = (
 
 # Media storage
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'www', 'userfiles')
-MEDIA_URL = '/userfiles/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'www', 'media')
+MEDIA_URL = '/media/'
 
 # Assets
 
