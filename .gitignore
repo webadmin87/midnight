@@ -1,4 +1,4 @@
 **/*.pyc
+__pycache__
 /.idea
-**/__pycache__
 /midnight/settings_local.py

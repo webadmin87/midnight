@@ -25,8 +25,6 @@ THEME_NAME = "demo"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%6fqr9$#ab!pwrw7yamrktl87e^@bc=fmujwr08s^o^led5^8j'
 
-ALLOWED_HOSTS = []
-
 # Application definition
 
 INSTALLED_APPS = (
