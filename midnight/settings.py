@@ -28,15 +28,17 @@ SECRET_KEY = '%6fqr9$#ab!pwrw7yamrktl87e^@bc=fmujwr08s^o^led5^8j'
 # Application definition
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped',
+    'django.contrib.contenttypes',
+    'grappelli.dashboard',
+    'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mptt',
-    'redactor',
+    'ckeditor',
     'sorl.thumbnail',
     'bootstrap_pagination',
     'django_assets',
@@ -52,12 +54,6 @@ INSTALLED_APPS = (
 # User model
 
 AUTH_USER_MODEL = 'main.AppUser'
-
-# Redactor settings
-
-REDACTOR_OPTIONS = {'lang': 'ru'}
-REDACTOR_UPLOAD_HANDLER = 'redactor.handlers.DateDirectoryUploader'
-REDACTOR_AUTH_DECORATOR = 'django.contrib.auth.decorators.login_required'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -148,3 +144,20 @@ REGISTRATION_AUTO_LOGIN = True
 
 ADMIN_EMAIL = 'admin@example.com'
 MAIL_FROM = 'admin@example.com'
+
+# Grapelli
+
+GRAPPELLI_INDEX_DASHBOARD = 'midnight.dashboard.CustomIndexDashboard'
+
+GRAPPELLI_ADMIN_TITLE = 'Midnight CMS'
+
+
+# CKeditor settings
+
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'filebrowserBrowseUrl': '/admin/filebrowser/browse?pop=3'
+    }
+}

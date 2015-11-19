@@ -17,6 +17,7 @@
   "dependencies": {
     "jquery": "2.1.x",
     "fancybox": "2.1.x",
-    "swfobject": "2.2"
+    "swfobject": "2.2",
+    "bootstrap": "3.x.x"
   }
 }

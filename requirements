@@ -1,7 +1,5 @@
 Pillow
 django==1.8.4
-django-wysiwyg-redactor==0.4.9
-django_admin_bootstrapped==2.5.5
 django-mptt==0.7.4
 sorl-thumbnail==12.3
 django-assets==0.11
@@ -11,3 +9,6 @@ django-simple-captcha==0.4.6
 django-registration-redux==1.2
 django-debug-toolbar==1.4
 django-precise-bbcode==1.0.10
+django-grappelli==2.7.2
+django-filebrowser==3.6.1
+django-ckeditor==5.0.2

@@ -17,12 +17,15 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from filebrowser.sites import site
 
 urlpatterns = [
+    url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^redactor/', include('redactor.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'', include('news.urls', namespace='news')),
     url(r'^$', 'main.views.main_page'),
     url(r'', include('main.urls', namespace='main')),

@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 from main.models import BaseTree, Base, BreadCrumbsMixin
-from redactor.fields import RedactorField
+from ckeditor.fields import RichTextField
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField
 from mptt.fields import TreeManyToManyField
@@ -52,7 +52,7 @@ class News(Base):
 
     annotation = models.TextField(blank=True, verbose_name=_('Annotation'))
 
-    text = RedactorField(blank=True, verbose_name=_('Text'))
+    text = RichTextField(blank=True, verbose_name=_('Text'))
 
     metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_('Title'))
 

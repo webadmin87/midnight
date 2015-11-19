@@ -2,12 +2,12 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import ForeignKey
-from redactor.fields import RedactorField
 from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from sorl.thumbnail import ImageField
 from django.contrib.auth.models import User, UserManager, AbstractUser
 from django.conf import settings
+from ckeditor.fields import RichTextField
 
 
 class AppUser(AbstractUser):
@@ -91,7 +91,7 @@ class Page(BreadCrumbsMixin, BaseTree):
 
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
-    text = RedactorField(blank=True, verbose_name=_('Text'))
+    text = RichTextField(blank=True, verbose_name=_('Text'))
 
     sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
@@ -126,7 +126,7 @@ class IncludeArea(Base):
 
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
-    text = RedactorField(blank=True, verbose_name=_('Text'))
+    text = RichTextField(blank=True, verbose_name=_('Text'))
 
     def __str__(self):
         return self.title
@@ -177,7 +177,7 @@ class PhotoAlbum(Base):
 
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
-    text = RedactorField(blank=True, verbose_name=_('Text'))
+    text = RichTextField(blank=True, verbose_name=_('Text'))
 
     def __str__(self):
         return self.title
