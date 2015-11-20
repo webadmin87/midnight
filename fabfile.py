@@ -7,6 +7,7 @@ env.keyfile = ['$HOME/.ssh/private_key']
 env.directory = '/path/to/project'
 env.activate = 'source /path/to/virtualenv/bin/activate'
 env.uwsgi_pid = '/tmp/project_name.pid'
+env.target_env = 'prod'
 
 
 @contextmanager
@@ -19,6 +20,7 @@ def virtualenv():
 def pull_data():
     with virtualenv():
         run('git pull origin master')
+        run('cp -f midnight/env/%s/settings_local.py midnight/settings_local.py' % env.target_env)
 
 
 def pip_install():
