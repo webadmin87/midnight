@@ -17,4 +17,4 @@ def show_news_line(slug=None, limit=3, **kwargs):
 
     return {'models': models, 'section': section, 'data': kwargs}
 
-register.inclusion_tag(file_name='news/tags/show_news_line.html', name='show_news_line')(show_news_line)
+register.inclusion_tag(file_name='midnight_news/tags/show_news_line.html', name='show_news_line')(show_news_line)

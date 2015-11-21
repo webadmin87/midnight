@@ -14,7 +14,7 @@ from django.views.generic import View
 class UpdateProfile(UpdateView):
     model = AppUser
     form_class = Profile
-    template_name = 'main/users/appuser_update_form.html'
+    template_name = 'midnight_main/users/appuser_update_form.html'
 
     def get_success_url(self):
             return reverse('midnight_main:user_profile')
@@ -39,12 +39,12 @@ def pages(request, path=None, instance=None):
     else:
         raise Http404()
 
-    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p, request))
+    return render(request, 'midnight_main/pages/pages.html', get_page_tpl_ctx(p, request))
 
 
 def main_page(request):
     p = get_object_or_404(Page, slug='main', active=True)
-    return render(request, 'main/pages/pages.html', get_page_tpl_ctx(p, request))
+    return render(request, 'midnight_main/pages/pages.html', get_page_tpl_ctx(p, request))
 
 
 class FeedbackView(View):
@@ -53,9 +53,9 @@ class FeedbackView(View):
 
     subject = 'Feedback message'
 
-    mail_tpl = 'main/mails/feedback.html'
+    mail_tpl = 'midnight_main/mails/feedback.html'
 
-    form_tpl = 'main/tags/ajax_form_body.html'
+    form_tpl = 'midnight_main/tags/ajax_form_body.html'
 
     def post(self, request):
 
@@ -76,9 +76,9 @@ class CommentView(View):
 
     form_cls = None
 
-    list_tpl = 'main/tags/comments_list.html'
+    list_tpl = 'midnight_main/tags/comments_list.html'
 
-    form_tpl = 'main/tags/comments_form_body.html'
+    form_tpl = 'midnight_main/tags/comments_form_body.html'
 
     def get(self, request):
         comments = get_object_comments(self.model_cls, request.GET.get('id', 0))

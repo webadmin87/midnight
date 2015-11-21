@@ -47,7 +47,7 @@ def index(request, slug=None):
         # If page is out of range (e.g. 9999), deliver last page of results.
         news = pager.page(pager.num_pages)
 
-    return render(request, 'news/news/index.html', {'news': news, 'section': section, 'meta': meta, 'crumbs': crumbs})
+    return render(request, 'midnight_news/news/index.html', {'news': news, 'section': section, 'meta': meta, 'crumbs': crumbs})
 
 
 def detail(request, section_slug, slug):
@@ -62,4 +62,4 @@ def detail(request, section_slug, slug):
 
     meta = MetaSeo(item)
 
-    return render(request, 'news/news/detail.html', {'item': item, 'text': text, 'meta': meta, 'crumbs': crumbs})
+    return render(request, 'midnight_news/news/detail.html', {'item': item, 'text': text, 'meta': meta, 'crumbs': crumbs})

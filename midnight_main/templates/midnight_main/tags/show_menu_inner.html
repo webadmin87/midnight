@@ -2,7 +2,7 @@
     {%if node.has_childs %}
         <ul>
          {%for ch in node.children.published.all %}
-              {%with node=ch template_name="main/tags/show_menu_inner.html" %}
+              {%with node=ch template_name="midnight_main/tags/show_menu_inner.html" %}
                    {%include template_name%}
               {%endwith%}
          {%endfor%}

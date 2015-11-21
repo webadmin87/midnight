@@ -22,4 +22,4 @@ def list_banners(slug, **kwargs):
         rendered.append(renderer(banner))
     return {'rendered': rendered, 'banners': banners, 'data': kwargs}
 
-register.inclusion_tag(file_name='banners/tags/list_banners.html', name='list_banners')(list_banners)
+register.inclusion_tag(file_name='midnight_banners/tags/list_banners.html', name='list_banners')(list_banners)
