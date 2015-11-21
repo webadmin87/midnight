@@ -1,10 +1,9 @@
 from captcha.fields import CaptchaField
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.core import validators
 
 from midnight_main.models import AppUser, PageComment
-from midnight.widgets import AdminImageWidget
+from midnight_main.widgets import AdminImageWidget
 
 
 class Feedback(forms.Form):

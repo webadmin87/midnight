@@ -2,7 +2,8 @@ from django import template
 from midnight_main.models import Menu, PhotoAlbum, IncludeArea
 from django.core.urlresolvers import reverse
 import uuid
-from midnight.tools import get_class_from_string
+from django.utils.module_loading import import_string
+
 
 register = template.Library()
 
@@ -43,7 +44,7 @@ def show_area(slug):
 def ajax_form(cls_name, view_name, modal=False, tag_id=None):
     if tag_id is None:
         tag_id = uuid.uuid4().hex[:6].lower()
-    form = get_class_from_string(cls_name)()
+    form = import_string(cls_name)()
     url = reverse(view_name)
     return {'form': form, 'url': url, 'modal': modal, 'id': tag_id}
 

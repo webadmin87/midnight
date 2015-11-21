@@ -1,12 +1,12 @@
-from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.template import Template, Context
-from midnight.components import MetaSeo
-from midnight_news.models import News, Section
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+
+from midnight_main.components import MetaSeo
+from midnight_news.models import News, Section
 
 
 def index(request, slug=None):

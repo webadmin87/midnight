@@ -2,7 +2,7 @@ from django.template import Template, Context
 
 from midnight_main.forms import PageCommentForm
 from midnight_main.models import PageComment, Page
-from midnight.components import MetaSeo
+from midnight_main.components import MetaSeo
 
 
 def get_page_tpl_ctx(page, request):

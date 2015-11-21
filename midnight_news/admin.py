@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.forms import ModelForm
+
 from midnight_main.admin import BaseAdmin, BaseAdminTree
 from midnight_news.models import Section, News
-from midnight.widgets import AdminImageWidget
+from midnight_main.widgets import AdminImageWidget
 
 
 class SectionAdmin(BaseAdminTree):

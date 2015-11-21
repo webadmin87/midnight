@@ -1,11 +1,11 @@
 from django.contrib.auth.admin import UserAdmin
 from django.forms import ModelForm
-from midnight_main.models import *
 from django.contrib import admin
-from midnight.widgets import AdminImageWidget
 from mptt.admin import MPTTModelAdmin
 from django.utils.translation import ugettext_lazy as _
-import midnight_main.admin_overrides
+
+from midnight_main.models import *
+from midnight_main.widgets import AdminImageWidget
 
 
 class BaseAdminAbstract(object):

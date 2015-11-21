@@ -1,1 +1,1 @@
-from . import boot
+from midnight_main.models_extend import *

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from . import views, models, forms
-from midnight import mptt_urls
+
+from . import views, models, forms, mptt_urls
 
 urlpatterns = [
     url(r'^accounts/profile/$', login_required(views.UpdateProfile.as_view()), name='user_profile'),
