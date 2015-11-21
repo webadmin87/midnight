@@ -241,3 +241,9 @@ msgstr "Простая страница"
 
 msgid "Guestbook"
 msgstr "Гостевая книга"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Password confirm"
+msgstr "Подтверждение пароля"

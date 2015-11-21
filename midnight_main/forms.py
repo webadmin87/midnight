@@ -21,9 +21,9 @@ class Feedback(forms.Form):
 
 class Profile(forms.ModelForm):
 
-    password_change = forms.CharField(required=False, widget=forms.PasswordInput, min_length=6)
+    password_change = forms.CharField(required=False, widget=forms.PasswordInput, min_length=6, label=_("Password"))
 
-    password_change_confirm = forms.CharField(required=False, widget=forms.PasswordInput)
+    password_change_confirm = forms.CharField(required=False, widget=forms.PasswordInput, label=_("Password confirm"))
 
     def clean(self):
         cleaned_data = self.cleaned_data
