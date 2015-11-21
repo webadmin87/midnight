@@ -88,8 +88,8 @@ class Page(BreadCrumbsMixin, BaseTree):
     MAIN_SLUG = "main"
 
     PAGE_TPL_CHOICES = (
-        ('midnight_main/templates/midnight_main/pages/pages.html', _('Simple page')),
-        ('midnight_main/templates/midnight_main/pages/guestbook.html', _('Guestbook')),
+        ('midnight_main/pages/pages.html', _('Simple page')),
+        ('midnight_main/pages/guestbook.html', _('Guestbook')),
     )
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))

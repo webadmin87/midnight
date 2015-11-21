@@ -39,12 +39,12 @@ def pages(request, path=None, instance=None):
     else:
         raise Http404()
 
-    return render(request, 'midnight_main/pages/pages.html', get_page_tpl_ctx(p, request))
+    return render(request, p.tpl, get_page_tpl_ctx(p, request))
 
 
 def main_page(request):
     p = get_object_or_404(Page, slug='main', active=True)
-    return render(request, 'midnight_main/pages/pages.html', get_page_tpl_ctx(p, request))
+    return render(request, p.tpl, get_page_tpl_ctx(p, request))
 
 
 class FeedbackView(View):
