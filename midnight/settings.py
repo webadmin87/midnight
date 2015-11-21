@@ -46,14 +46,14 @@ INSTALLED_APPS = (
     'captcha',
     'registration',
     'precise_bbcode',
-    'main',
-    'news',
-    'banners'
+    'midnight_main',
+    'midnight_news',
+    'midnight_banners'
 ) + ADDITIONAL_APPS
 
 # User model
 
-AUTH_USER_MODEL = 'main.AppUser'
+AUTH_USER_MODEL = 'midnight_main.AppUser'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

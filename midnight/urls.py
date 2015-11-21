@@ -26,9 +26,9 @@ urlpatterns = [
     url(r'^captcha/', include('captcha.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'', include('news.urls', namespace='news')),
-    url(r'^$', 'main.views.main_page'),
-    url(r'', include('main.urls', namespace='main')),
+    url(r'', include('midnight_news.urls', namespace='midnight_news')),
+    url(r'^$', 'midnight_main.views.main_page'),
+    url(r'', include('midnight_main.urls', namespace='midnight_main')),
 ]
 
 if settings.DEBUG:

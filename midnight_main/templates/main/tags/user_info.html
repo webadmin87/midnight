@@ -1,0 +1,19 @@
+{% load i18n %}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        {% if user.is_authenticated %}
+
+                <a href="{% url 'midnight_main:user_profile' %}">{% trans "Profile" %}</a> |
+                <a href="{% url 'auth_logout' %}">{% trans "Log out" %} ({{ user.username }})</a>
+
+        {% else %}
+
+                <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a> |
+                <a href="{% url 'registration_register' %}">{% trans "Register for an account" %}</a>
+
+        {% endif %}
+
+    </div>
+</div>
