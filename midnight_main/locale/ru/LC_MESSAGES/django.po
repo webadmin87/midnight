@@ -232,3 +232,12 @@ msgstr "Комментарий успешно добавлен"
 
 msgid "Comment error"
 msgstr "Ошибка добавления комментария"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Simple page"
+msgstr "Простая страница"
+
+msgid "Guestbook"
+msgstr "Гостевая книга"

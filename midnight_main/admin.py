@@ -28,7 +28,7 @@ class BaseAdminTree(BaseAdminAbstract, MPTTModelAdmin):
 class PageAdmin(BaseAdminTree):
 
     fieldsets = [
-        (None, {'fields':  ['parent', 'title', 'slug', 'active', 'text', 'sort', 'comments']}),
+        (None, {'fields':  ['parent', 'title', 'slug', 'active', 'text', 'sort', 'comments', 'tpl']}),
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 

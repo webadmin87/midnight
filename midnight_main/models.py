@@ -87,6 +87,11 @@ class Page(BreadCrumbsMixin, BaseTree):
 
     MAIN_SLUG = "main"
 
+    PAGE_TPL_CHOICES = (
+        ('midnight_main/templates/midnight_main/pages/pages.html', _('Simple page')),
+        ('midnight_main/templates/midnight_main/pages/guestbook.html', _('Guestbook')),
+    )
+
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
@@ -96,6 +101,8 @@ class Page(BreadCrumbsMixin, BaseTree):
     sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
     comments = models.BooleanField(default=False, verbose_name=_('Comments'))
+
+    tpl = models.CharField(max_length=255, default=PAGE_TPL_CHOICES[0][0], verbose_name=_('Template'), choices=getattr(settings, 'MIDNIGHT_MAIN_PAGE_TPL_CHOICES', PAGE_TPL_CHOICES))
 
     metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_('MetaTitle'))
 
