@@ -34,7 +34,7 @@ def index(request, slug=None):
 
     models = q.all()
 
-    pager = Paginator(models, settings.NEWS_PAGE_SIZE)
+    pager = Paginator(models, getattr(settings, 'MIDNIGHT_NEWS_PAGE_SIZE', 20))
 
     page = request.GET.get('page')
 

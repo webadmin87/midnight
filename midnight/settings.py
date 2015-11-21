@@ -140,11 +140,6 @@ CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 
-# Email accounts
-
-ADMIN_EMAIL = 'admin@example.com'
-MAIL_FROM = 'admin@example.com'
-
 # Grapelli
 
 GRAPPELLI_INDEX_DASHBOARD = 'midnight.dashboard.CustomIndexDashboard'

@@ -1,4 +1,3 @@
-from django.conf import settings
-
-settings.NEWS_PAGE_SIZE = 20
-
+# Settings
+#
+# MIDNIGHT_NEWS_PAGE_SIZE = 20
