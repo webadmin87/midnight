@@ -156,5 +156,12 @@ class ProductAdmin(BaseAdmin):
 
     public_link.short_description = 'Url'
 
+    change_list_template = 'admin/product_change_list.html'
+
+    def changelist_view(self, request, extra_context=None):
+        resp = super().changelist_view(request, extra_context)
+        resp.context_data['param_groups'] = ParamGroup.objects.all()
+        return resp
+
 admin.site.register(Product, ProductAdmin)
 
