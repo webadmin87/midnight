@@ -23,7 +23,7 @@ class Base(models.Model):
 
     active = models.BooleanField(default=True, verbose_name=_('Active'))
 
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'), null=True, blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'), null=True, blank=True, related_name='+')
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -40,7 +40,7 @@ class BaseTree(MPTTModel):
 
     active = models.BooleanField(default=True, verbose_name=_('Active'))
 
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'), null=True, blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Author'), null=True, blank=True, related_name='+')
 
     created_at = models.DateTimeField(auto_now_add=True)
 

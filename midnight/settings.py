@@ -48,7 +48,8 @@ INSTALLED_APPS = (
     'precise_bbcode',
     'midnight_main',
     'midnight_news',
-    'midnight_banners'
+    'midnight_banners',
+    'midnight_catalog',
 ) + ADDITIONAL_APPS
 
 # User model
