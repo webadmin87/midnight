@@ -32,6 +32,8 @@ class PageAdmin(BaseAdminTree):
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
+    prepopulated_fields = {"slug": ("title",)}
+
     list_display = ('title', 'id', 'slug', 'active', 'sort', 'public_link')
 
     list_filter = ('active',)

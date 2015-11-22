@@ -44,7 +44,7 @@ class News(Base):
 
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))
 
-    date = models.DateField(verbose_name=_('Date'), blank=True)
+    date = models.DateField(verbose_name=_('Date'), blank=False)
 
     sections = TreeManyToManyField(Section, verbose_name=_('Sections'))
 

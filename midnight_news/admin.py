@@ -13,6 +13,8 @@ class SectionAdmin(BaseAdminTree):
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
+    prepopulated_fields = {"slug": ("title",)}
+
     list_display = ('title', 'id', 'slug', 'active', 'sort', 'public_link')
 
     list_editable = ('sort', )
@@ -46,6 +48,8 @@ class NewsAdmin(BaseAdmin):
         (None, {'fields':  ['active', 'title', 'slug', 'date', 'sections', 'image', 'annotation', 'text']}),
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
+
+    prepopulated_fields = {"slug": ("title",)}
 
     list_display = ('title', 'id', 'slug', 'active', 'date', 'public_link')
 
