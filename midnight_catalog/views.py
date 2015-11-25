@@ -24,7 +24,7 @@ def index(request, slug=None):
         if section is None:
             raise Http404('Section with slug "%s" not found' % slug)
 
-        crumbs = section.get_breadcrumbs()
+        crumbs = [{'label': _('Catalog'), 'url': reverse('midnight_catalog:catalog_list')}] + section.get_breadcrumbs()
 
         meta = MetaSeo(section)
 
@@ -42,7 +42,7 @@ def detail(request, section_slug, slug):
 
     section = get_object_or_404(Section, slug=section_slug, active=True)
 
-    crumbs = section.get_breadcrumbs(True) + [{'label': item.title}]
+    crumbs = [{'label': _('Catalog'), 'url': reverse('midnight_catalog:catalog_list')}] + section.get_breadcrumbs(True) + [{'label': item.title}]
 
     text = Template(item.text).render(Context())
 
