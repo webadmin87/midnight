@@ -52,6 +52,8 @@ class ParamInline(admin.StackedInline):
 
     extra = 3
 
+    ordering = ('sort',)
+
 
 class ParamGroupAdmin(BaseAdmin):
 

@@ -123,6 +123,8 @@ class Param(Base):
 
     measurement = models.CharField(max_length=32, verbose_name=_('Measurement'), blank=True)
 
+    sort = models.IntegerField(default=500, verbose_name=_('Sort'))
+
     group = models.ForeignKey(ParamGroup, verbose_name=_('ParamGroup'))
 
     def __str__(self):
