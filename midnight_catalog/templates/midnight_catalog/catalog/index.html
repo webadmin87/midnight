@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load bootstrap_pagination %}
 {% load thumbnail %}
+{% load midnight_catalog %}
 
 {% block title %}{{ meta.metatitle }}{% endblock %}
 {% block keywords %}{{ meta.keywords }}{% endblock %}
@@ -33,6 +34,8 @@
             <p>{{ item.annotation | safe }}</p>
 
             <p>{{ item.price }}</p>
+
+            <p>{% param_value item.paramvalue_set.all "producer" %}</p>
 
         </div>
 

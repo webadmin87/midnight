@@ -99,6 +99,8 @@ class ParamValueInline(admin.StackedInline):
 
     extra = 3
 
+    ordering = ('sort',)
+
     def get_formset(self, request, obj=None, **kwargs):
         formset = super().get_formset(request, obj, **kwargs)
         formset.request = request
@@ -129,7 +131,7 @@ class ProductPhotoInline(admin.StackedInline):
 class ProductAdmin(BaseAdmin):
 
     fieldsets = [
-        (None, {'fields':  ['active', 'title', 'slug', 'sections', 'image', 'price', 'annotation', 'text']}),
+        (None, {'fields':  ['active', 'title', 'slug', 'sections', 'image', 'price', 'sort', 'annotation', 'text']}),
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 

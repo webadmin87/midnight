@@ -12,8 +12,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='param',
-            name='measurement',
-            field=models.CharField(max_length=32, blank=True, verbose_name='Measurement'),
+            model_name='product',
+            name='price',
+            field=models.DecimalField(max_digits=11, blank=True, default=0, verbose_name='Price', decimal_places=2),
         ),
     ]
