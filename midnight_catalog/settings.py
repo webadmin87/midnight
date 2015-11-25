@@ -1,0 +1,3 @@
+# Settings
+#
+# MIDNIGHT_CATALOG_PAGE_SIZE = 20

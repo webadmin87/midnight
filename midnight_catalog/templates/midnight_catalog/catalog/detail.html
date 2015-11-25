@@ -1,0 +1,62 @@
+{% extends "layouts/base.html" %}
+
+{% load thumbnail i18n %}
+
+{% block title %}{{ meta.metatitle }}{% endblock %}
+{% block keywords %}{{ meta.keywords }}{% endblock %}
+{% block description %}{{ meta.description }}{% endblock %}
+
+{% block content %}
+
+    <div class="clearfix">
+
+        <h1>{{ item.title }}</h1>
+
+        <div class="clearfix">
+
+            <div class="pull-left">
+
+                {% thumbnail item.image "240x240" crop="center" as im %}
+
+                     <a class="photogallery" rel="{{ item.slug }}" href="{{ item.image.url }}" title="{{ item.title }}">
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="img-thumbnail" />
+                     </a>
+
+                {% endthumbnail %}
+
+            </div>
+
+            <ul class="list-group pull-right">
+
+                <li class="list-group-item"><strong>{% trans "Price" %}:</strong> <span class="label label-danger">{{ item.price }}</span></li>
+
+                {% for param_value in item.paramvalue_set.all %}
+                    <li class="list-group-item"><strong>{{ param_value.param.title }}:</strong> {{ param_value.value }} <em>{{ param_value.param.measurement }}</em></li>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        <hr />
+
+        <ul class="list-inline">
+            {%for photo in item.productphoto_set.all %}
+            <li >
+                {% thumbnail photo.image "150x120" crop="center" as im %}
+                    <a class="photogallery" rel="{{ item.slug }}" href="{{ photo.image.url }}" title="{{ photo.title }}">
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="img-thumbnail" />
+                    </a>
+                {% endthumbnail %}
+            </li>
+            {%endfor%}
+
+        </ul>
+
+
+
+        {{ text | safe }}
+
+    </div>
+
+{% endblock %}

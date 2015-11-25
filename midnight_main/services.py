@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.template import Template, Context
 
 from midnight_main.forms import PageCommentForm
@@ -45,3 +46,19 @@ def save_formset_with_author(formset, user):
             instance.author = user
         instance.save()
     formset.save_m2m()
+
+
+def get_by_page(query, page, page_size):
+
+    pager = Paginator(query, page_size)
+
+    try:
+        models = pager.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        models = pager.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        models = pager.page(pager.num_pages)
+
+    return models

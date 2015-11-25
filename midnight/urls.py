@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'', include('midnight_news.urls', namespace='midnight_news')),
+    url(r'', include('midnight_catalog.urls', namespace='midnight_catalog')),
     url(r'^$', 'midnight_main.views.main_page'),
     url(r'', include('midnight_main.urls', namespace='midnight_main')),
 ]

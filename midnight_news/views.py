@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
 from midnight_main.components import MetaSeo
+from midnight_main.services import get_by_page
 from midnight_news.models import News, Section
 
 
@@ -32,20 +33,9 @@ def index(request, slug=None):
 
     q = q.prefetch_related('sections').order_by('-date', '-id')
 
-    models = q.all()
+    q = q.all()
 
-    pager = Paginator(models, getattr(settings, 'MIDNIGHT_NEWS_PAGE_SIZE', 20))
-
-    page = request.GET.get('page')
-
-    try:
-        news = pager.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        news = pager.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        news = pager.page(pager.num_pages)
+    news = get_by_page(q, request.GET.get('page'), getattr(settings, 'MIDNIGHT_NEWS_PAGE_SIZE', 20))
 
     return render(request, 'midnight_news/news/index.html', {'news': news, 'section': section, 'meta': meta, 'crumbs': crumbs})
 

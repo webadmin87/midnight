@@ -28,8 +28,7 @@ class Section(BreadCrumbsMixin, BaseTree):
     description = models.CharField(max_length=2000, blank=True, verbose_name=_('Description'))
 
     def get_absolute_url(self):
-        return ''
-        # return reverse('midnight_catalog:catalog_list', kwargs={'slug': self.slug})
+        return reverse('midnight_catalog:catalog_list', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
@@ -68,8 +67,7 @@ class Product(Base):
     description = models.CharField(max_length=2000, blank=True, verbose_name=_('Description'))
 
     def get_absolute_url(self):
-        return ''
-        # return reverse('midnight_catalog:catalog_detail', kwargs={'section_slug': self.sections.all()[0].slug, 'slug': self.slug})
+        return reverse('midnight_catalog:catalog_detail', kwargs={'section_slug': self.sections.all()[0].slug, 'slug': self.slug})
 
     def __str__(self):
         return self.title
