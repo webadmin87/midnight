@@ -157,3 +157,9 @@ CKEDITOR_CONFIGS = {
         'filebrowserBrowseUrl': '/admin/filebrowser/browse?pop=3'
     }
 }
+
+# Sorl thumbnail (resize)
+
+THUMBNAIL_COLORSPACE = None
+
+THUMBNAIL_PRESERVE_FORMAT = True
