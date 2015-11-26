@@ -62,3 +62,11 @@ def get_by_page(query, page, page_size):
         models = pager.page(pager.num_pages)
 
     return models
+
+
+def mark_current_menus(menus, path_info):
+    for menu in menus:
+        if menu.link == "/":
+            menu.is_current = menu.link == path_info
+        else:
+            menu.is_current = path_info.find(menu.link) == 0

@@ -4,19 +4,22 @@ from django.core.urlresolvers import reverse
 import uuid
 from django.utils.module_loading import import_string
 
+from midnight_main.services import mark_current_menus
 
 register = template.Library()
 
 
-def show_menu(slug, **kwargs):
+def show_menu(context, slug, **kwargs):
 
     try:
         menu = Menu.objects.published().get(slug=slug)
-        return {'menu': menu, 'data': kwargs}
+        menus = menu.children.published().all()
+        mark_current_menus(menus, context['request'].path_info)
+        return {'menus': menus, 'data': kwargs}
     except Menu.DoesNotExist:
         return None
 
-register.inclusion_tag(file_name='midnight_main/tags/show_menu.html', name='show_menu')(show_menu)
+register.inclusion_tag(file_name='midnight_main/tags/show_menu.html', takes_context=True, name='show_menu')(show_menu)
 
 
 def show_gallery(slug, size="100x100", crop="center", **kwargs):

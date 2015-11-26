@@ -152,6 +152,8 @@ class Menu(BaseTree):
         ('_blank', _('Blank window')),
     )
 
+    is_current = False
+
     title = models.CharField(max_length=255, verbose_name=_('Title'))
 
     link = models.CharField(max_length=2000, blank=True, verbose_name=_('Link'))

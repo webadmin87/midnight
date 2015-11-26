@@ -1,5 +1,19 @@
+{% load mptt_tags %}
+
 <ul{% for key, value in data.items %} {{ key }} = "{{ value }}"{% endfor %}>
-{%for node in menu.children.published.all %}
-    {%include "midnight_main/tags/show_menu_inner.html" %}
-{%endfor%}
+
+    {% recursetree menus %}
+        <li {% if node.is_current %}class="active"{% endif %}>
+
+            <a href="{{ node.link }}" target="{{ node.target }}" class="{{ node.class }}">{{node.title}}</a>
+
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+
+        </li>
+    {% endrecursetree %}
+
 </ul>
