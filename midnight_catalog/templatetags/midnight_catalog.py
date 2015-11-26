@@ -2,6 +2,8 @@ from django import template
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.conf import settings
 
+from midnight_catalog.models import Section
+
 register = template.Library()
 
 
@@ -32,3 +34,13 @@ def currency(money):
         formatted = ""
     return "%s%s %s" % (intcomma(int(money)), formatted, symbol)
 
+
+def catalog_sections(slug=None, **kwargs):
+    if slug is None:
+        sections = Section.objects.published().all()
+    else:
+        section = Section.objects.get(slug=slug)
+        sections = section.get_descendants().all()
+    return {'sections': sections, 'data': kwargs}
+
+register.inclusion_tag(file_name='midnight_catalog/tags/catalog_sections.html', name='catalog_sections')(catalog_sections)

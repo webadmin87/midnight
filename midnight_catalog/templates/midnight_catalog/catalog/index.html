@@ -13,8 +13,10 @@
 
     {% if section %}
         <h1>{{ section.title }}</h1>
+        {% catalog_sections slug=section.slug  %}
     {% else  %}
        <h1>{% trans "Catalog" %}</h1>
+       {% catalog_sections  %}
     {% endif %}
 
     {% for item in products %}
