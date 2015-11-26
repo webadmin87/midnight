@@ -35,7 +35,7 @@
 
             <p>{{ item.price }}</p>
 
-            <p>{% param_value item.paramvalue_set.all "producer" %}</p>
+            {% comment %}<p>{% param_title item.paramvalue_set.all "producer" %}: {% param_value item.paramvalue_set.all "producer" %}</p>{% endcomment %}
 
         </div>
 
