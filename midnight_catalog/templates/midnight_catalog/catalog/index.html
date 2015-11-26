@@ -33,7 +33,7 @@
 
             <p>{{ item.annotation | safe }}</p>
 
-            <p>{{ item.price }}</p>
+            <p><span class="label label-danger">{{ item.price | currency}}</span></p>
 
             {% comment %}<p>{% param_title item.paramvalue_set.all "producer" %}: {% param_value item.paramvalue_set.all "producer" %}</p>{% endcomment %}
 
