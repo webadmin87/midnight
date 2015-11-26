@@ -14,7 +14,7 @@
 
         <div class="clearfix">
 
-            <div class="pull-left">
+            <div class="pull-left" style="margin-right: 10px">
 
                 {% thumbnail item.image "240x240" crop="center" as im %}
 
@@ -26,7 +26,7 @@
 
             </div>
 
-            <ul class="list-group pull-right">
+            <ul class="list-group pull-left">
 
                 <li class="list-group-item"><strong>{% trans "Price" %}:</strong> <span class="label label-danger">{{ item.price }}</span></li>
 
@@ -52,8 +52,6 @@
             {%endfor%}
 
         </ul>
-
-
 
         {{ text | safe }}
 

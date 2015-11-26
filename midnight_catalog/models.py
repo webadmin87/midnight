@@ -54,7 +54,7 @@ class Product(Base):
 
     image = ImageField(upload_to='catalog', verbose_name=_('Image'), blank=True)
 
-    price = models.DecimalField(verbose_name=_('Price'), blank=True, default=0, max_digits=11, decimal_places=2)
+    price = models.DecimalField(verbose_name=_('Price'), default=0, max_digits=11, decimal_places=2)
 
     sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 

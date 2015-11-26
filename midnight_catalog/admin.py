@@ -85,10 +85,10 @@ class ParamValueInlineFormSet(forms.models.BaseInlineFormSet):
             group = ParamGroup.objects.get(id=initial_group)
             if not group:
                 return
-            params = group.param_set.all()
+            params = group.param_set.order_by('sort').all()
             self.initial = []
             for param in params:
-                self.initial.append({'param': param})
+                self.initial.append({'param': param, 'sort': param.sort})
 
 
 class ParamValueInline(admin.StackedInline):
@@ -119,11 +119,23 @@ class ParamValueInline(admin.StackedInline):
         return extra
 
 
+class ProductPhotoForm(ModelForm):
+
+    class Meta:
+        model = ProductPhoto
+        fields = '__all__'
+        widgets = {
+            'image': AdminImageWidget,
+        }
+
+
 class ProductPhotoInline(admin.StackedInline):
 
     exclude = ['author']
 
     model = ProductPhoto
+
+    form = ProductPhotoForm
 
     extra = 3
 
