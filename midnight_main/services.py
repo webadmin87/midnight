@@ -66,7 +66,7 @@ def get_by_page(query, page, page_size):
 
 def mark_current_menus(menus, path_info):
     for menu in menus:
-        if menu.link == "/":
-            menu.is_current = menu.link == path_info
+        if menu.get_absolute_url() == "/":
+            menu.is_current = menu.get_absolute_url() == path_info
         else:
-            menu.is_current = path_info.find(menu.link) == 0
+            menu.is_current = path_info.find(menu.get_absolute_url()) == 0

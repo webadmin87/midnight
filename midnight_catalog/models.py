@@ -9,6 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class Section(BreadCrumbsMixin, BaseTree):
 
+    is_current = False
+
     title = models.CharField(max_length=255, verbose_name=_('Title'))
 
     slug = models.SlugField(max_length=255, unique=True, verbose_name=_('Slug'))

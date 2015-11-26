@@ -3,6 +3,7 @@ from django.contrib.humanize.templatetags.humanize import intcomma
 from django.conf import settings
 
 from midnight_catalog.models import Section
+from midnight_main.services import mark_current_menus
 
 register = template.Library()
 
@@ -35,12 +36,13 @@ def currency(money):
     return "%s%s %s" % (intcomma(int(money)), formatted, symbol)
 
 
-def catalog_sections(slug=None, **kwargs):
+def catalog_sections(context, slug=None, **kwargs):
     if slug is None:
         sections = Section.objects.published().all()
     else:
         section = Section.objects.get(slug=slug)
         sections = section.get_descendants().all()
+    mark_current_menus(sections, context['request'].path_info)
     return {'sections': sections, 'data': kwargs}
 
-register.inclusion_tag(file_name='midnight_catalog/tags/catalog_sections.html', name='catalog_sections')(catalog_sections)
+register.inclusion_tag(file_name='midnight_catalog/tags/catalog_sections.html', takes_context=True, name='catalog_sections')(catalog_sections)

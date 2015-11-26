@@ -166,6 +166,9 @@ class Menu(BaseTree):
 
     sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
+    def get_absolute_url(self):
+        return self.link
+
     def __str__(self):
         return self.title
 
