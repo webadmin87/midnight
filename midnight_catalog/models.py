@@ -149,3 +149,13 @@ class ParamValue(Base):
 
     sort = models.IntegerField(default=500, verbose_name=_('Sort'))
 
+    def __str__(self):
+        return _("ParamValue")
+
+    class Meta:
+
+        verbose_name = _('ParamValue')
+
+        verbose_name_plural = _('ParamValues')
+
+
