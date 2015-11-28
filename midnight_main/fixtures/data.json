@@ -1,0 +1,101 @@
+[
+  {
+    "fields": {
+      "user_permissions": [],
+      "email": "webadmin87@gmil.com",
+      "password": "pbkdf2_sha256$20000$nUk6I0ANMaoz$sUu4QnYuW7uHJia2WsvO4ch36oKnKtiU6WLb2r4m67w=",
+      "date_joined": "2015-11-28T18:18:13.953Z",
+      "groups": [],
+      "last_name": "",
+      "is_active": true,
+      "is_staff": true,
+      "image": "",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "phone": "",
+      "first_name": ""
+    },
+    "model": "midnight_main.appuser",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "author": 1,
+      "tree_id": 1,
+      "rght": 2,
+      "metatitle": "",
+      "keywords": "",
+      "title": "\u0413\u043b\u0430\u0432\u043d\u0430\u044f",
+      "update_at": "2015-11-28T18:18:13.985Z",
+      "text": "\u042d\u0442\u043e \u0433\u043b\u0430\u0432\u043d\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430",
+      "comments": false,
+      "description": "",
+      "slug": "main",
+      "lft": 1,
+      "tpl": "midnight_main/pages/pages.html",
+      "sort": 500,
+      "level": 0,
+      "parent": null,
+      "created_at": "2015-11-28T18:18:13.985Z",
+      "active": true
+    },
+    "model": "midnight_main.page",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "author": 1,
+      "slug": "left",
+      "title": "\u041b\u0435\u0432\u0430\u044f \u043a\u043e\u043b\u043e\u043d\u043a\u0430",
+      "update_at": "2015-11-28T18:18:14.009Z",
+      "created_at": "2015-11-28T18:18:14.009Z",
+      "text": "\u0422\u0435\u043a\u0441\u0442 \u0432 \u043b\u0435\u0432\u043e\u0439 \u043a\u043b\u043e\u043d\u043a\u0435",
+      "active": true
+    },
+    "model": "midnight_main.includearea",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "author": 1,
+      "cls": "",
+      "rght": 4,
+      "title": "\u0413\u043b\u0430\u0432\u043d\u043e\u0435 \u043c\u0435\u043d\u044e",
+      "update_at": "2015-11-28T18:18:13.996Z",
+      "tree_id": 1,
+      "level": 0,
+      "slug": "main",
+      "lft": 1,
+      "sort": 500,
+      "link": "",
+      "parent": null,
+      "created_at": "2015-11-28T18:18:13.996Z",
+      "target": "",
+      "active": true
+    },
+    "model": "midnight_main.menu",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "author": 1,
+      "cls": "",
+      "rght": 3,
+      "title": "\u0413\u043b\u0430\u0432\u043d\u0430\u044f",
+      "update_at": "2015-11-28T18:18:14.001Z",
+      "tree_id": 1,
+      "level": 1,
+      "slug": "",
+      "lft": 2,
+      "sort": 500,
+      "link": "/",
+      "parent": 1,
+      "created_at": "2015-11-28T18:18:14.001Z",
+      "target": "_self",
+      "active": true
+    },
+    "model": "midnight_main.menu",
+    "pk": 2
+  }
+]

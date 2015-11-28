@@ -205,12 +205,12 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(blank=True, null=True, verbose_name='Author', to=settings.AUTH_USER_MODEL),
         ),
 
-        migrations.RunPython(create_super_user),
+        # migrations.RunPython(create_super_user),
 
-        migrations.RunPython(create_pages),
+        # migrations.RunPython(create_pages),
 
-        migrations.RunPython(create_menu),
+        # migrations.RunPython(create_menu),
 
-        migrations.RunPython(create_ia)
+        # migrations.RunPython(create_ia)
 
     ]

@@ -80,6 +80,6 @@ class Migration(migrations.Migration):
             field=mptt.fields.TreeManyToManyField(verbose_name='Sections', to='midnight_news.Section'),
         ),
 
-        migrations.RunPython(create_news)
+        # migrations.RunPython(create_news)
 
     ]
