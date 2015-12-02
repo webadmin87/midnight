@@ -42,7 +42,7 @@ setup(
     name='midnight',
     version='0.1.0-alpha',
     description='Amazing cms powered by Django framework',
-    long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
+    long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     url='https://github.com/webadmin87/midnight',
     license='BSD License',
     platforms=['OS Independent'],
