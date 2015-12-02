@@ -2,3 +2,4 @@
 __pycache__
 /.idea
 /midnight/settings_local.py
+/midnight.egg-info

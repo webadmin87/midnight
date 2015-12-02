@@ -25,7 +25,7 @@ def pull_data():
 
 def pip_install():
     with virtualenv():
-        run('pip install -r requirements')
+        run('pip install -e .')
 
 
 def bower_install():

@@ -17,7 +17,7 @@ CMS на django фреймворке для быстрого развертыв�
 ```
 $ cp midnight/env/dev/settings_local.py midnight/settings_local.py
 
-$ pip install -r requirements
+$ pip install -e .
 
 $ bower install
 
