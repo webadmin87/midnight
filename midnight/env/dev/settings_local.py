@@ -1,5 +1,6 @@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ASSETS_DEBUG = True
 
 ALLOWED_HOSTS = []
 

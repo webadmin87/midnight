@@ -34,6 +34,8 @@ INSTALL_REQUIREMENTS = [
     'django-grappelli==2.7.2',
     'django-filebrowser==3.6.1',
     'django-ckeditor==5.0.2',
+    'jsmin',
+    'cssmin',
 ]
 
 setup(

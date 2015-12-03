@@ -1,5 +1,6 @@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+ASSETS_DEBUG = False
 
 ALLOWED_HOSTS = ['.example.com']
 
