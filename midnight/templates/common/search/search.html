@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+
+{% load bootstrap bootstrap_pagination i18n %}
+
+{% block content %}
+    <h2>{% trans "Search" %}</h2>
+
+    <form method="get" action=".">
+
+        {{ form | bootstrap }}
+
+        <div class="form-row">
+            <input type="submit" value="{% trans "Search" %}" class="btn btn-primary" />
+        </div>
+
+        {% if query %}
+            <h3>{% trans "Search results" %}</h3>
+
+            {% for result in page.object_list %}
+                <p>
+                    <a target="_blank" href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+                </p>
+            {% empty %}
+                <p>{% trans "No results found" %}</p>
+            {% endfor %}
+
+            {% bootstrap_paginate page %}
+
+        {% else %}
+
+        {% endif %}
+    </form>
+{% endblock %}

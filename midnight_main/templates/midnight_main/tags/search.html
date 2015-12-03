@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<form action="{% url "haystack_search" %}" method="get">
+
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control" name="q" value="{{ query }}" placeholder="{% trans "Search" %}..." />
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">OK</button>
+            </span>
+        </div>
+    </div>
+
+</form>

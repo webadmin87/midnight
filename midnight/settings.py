@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'captcha',
     'registration',
     'precise_bbcode',
+    'haystack',
     'midnight_main',
     'midnight_news',
     'midnight_banners',
@@ -163,3 +164,13 @@ CKEDITOR_CONFIGS = {
 THUMBNAIL_COLORSPACE = None
 
 THUMBNAIL_PRESERVE_FORMAT = True
+
+# Haystack search
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20

@@ -36,6 +36,7 @@ INSTALL_REQUIREMENTS = [
     'django-ckeditor==5.0.2',
     'jsmin',
     'cssmin',
+    'django-haystack==2.4.0',
 ]
 
 setup(

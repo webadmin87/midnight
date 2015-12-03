@@ -79,3 +79,9 @@ def comments_block(comments, form, obj, url, **kwargs):
     return {'comments': comments, 'form': form, 'url': url, 'obj': obj, 'data': data}
 
 register.inclusion_tag(file_name='midnight_main/tags/comments.html', name='comments')(comments_block)
+
+
+def search_simple_form(context):
+    return {'query': context['request'].GET.get('q', '')}
+
+register.inclusion_tag(file_name='midnight_main/tags/search.html', takes_context=True, name='search_simple_form')(search_simple_form)

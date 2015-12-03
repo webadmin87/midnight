@@ -297,3 +297,15 @@ msgstr "Отправить"
 
 msgid "Registration"
 msgstr "Регистрация"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Search results"
+msgstr "Результаты поиска"
+
+msgid "No results found"
+msgstr "Ничего не найдено"
+
+msgid "Search In"
+msgstr "Искать в:"

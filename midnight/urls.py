@@ -20,6 +20,7 @@ from django.conf import settings
 from filebrowser.sites import site
 
 urlpatterns = [
+    url(r'^search/', include('haystack.urls')),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
