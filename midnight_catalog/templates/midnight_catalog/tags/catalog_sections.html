@@ -3,7 +3,7 @@
 <ul{% for key, value in data.items %} {{ key }} = "{{ value }}"{% endfor %}>
     {% recursetree sections %}
         <li {% if node.is_current %}class="active"{% endif %}>
-            <a href="{% url "midnight_catalog:catalog_list" slug=node.slug %}">{{ node.title }}</a>
+            <a href="{% url "midnight_catalog:catalog_list" slug=node.slug %}">{{ node.title }} ({{ node.product__count }})</a>
 
             {% if not node.is_leaf_node and node.level < max_level %}
                 <ul class="children">
