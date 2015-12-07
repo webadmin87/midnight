@@ -81,3 +81,9 @@ msgstr "Все новости"
 #, python-format
 msgid "All %(title)s"
 msgstr "Все %(title)s"
+
+msgid "NewsComment"
+msgstr "Комментарий к новости"
+
+msgid "NewsComments"
+msgstr "Комментарии к новостям"

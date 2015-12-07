@@ -10,16 +10,20 @@ def get_page_tpl_ctx(page, request):
     text = Template(page.text).render(Context())
     meta = MetaSeo(page)
     comments = get_object_comments(PageComment, page.id)
-    if request.user.is_authenticated():
-        init = {'obj': page, 'username': request.user.username, 'email': request.user.email}
-    else:
-        init = {'obj': page}
-    comments_form = PageCommentForm(initial=init)
+    comments_form = PageCommentForm(initial=get_comment_init(request, page))
     if page.slug == Page.MAIN_SLUG:
         crumbs = None
     else:
         crumbs = page.get_breadcrumbs()
     return {'page': page, 'comments': comments, 'comments_form': comments_form, 'text': text, 'meta': meta, 'crumbs': crumbs}
+
+
+def get_comment_init(request, obj):
+    if request.user.is_authenticated():
+        init = {'obj': obj, 'username': request.user.username, 'email': request.user.email}
+    else:
+        init = {'obj': obj}
+    return init
 
 
 def get_object_comments(model_cls, obj_id):

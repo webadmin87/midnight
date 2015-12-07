@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.db import models
-from midnight_main.models import BaseTree, Base, BreadCrumbsMixin
+from midnight_main.models import BaseTree, Base, BreadCrumbsMixin, BaseComment
 from ckeditor.fields import RichTextField
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField
@@ -54,6 +54,8 @@ class News(Base):
 
     text = RichTextField(blank=True, verbose_name=_('Text'))
 
+    comments = models.BooleanField(default=False, verbose_name=_('Comments'))
+
     metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_('Title'))
 
     keywords = models.CharField(max_length=2000, blank=True, verbose_name=_('Keywords'))
@@ -71,3 +73,15 @@ class News(Base):
         verbose_name = _('NewsItem')
 
         verbose_name_plural = _('News')
+
+
+class NewsComment(BaseComment):
+
+    obj = models.ForeignKey(News)
+
+    class Meta:
+
+        verbose_name = _('NewsComment')
+
+        verbose_name_plural = _('NewsComments')
+

@@ -6,8 +6,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
 from midnight_main.components import MetaSeo
-from midnight_main.services import get_by_page
-from midnight_news.models import News, Section
+from midnight_main.services import get_by_page, get_object_comments, get_comment_init
+from midnight_news.forms import NewsCommentForm
+from midnight_news.models import News, Section, NewsComment
 
 
 def index(request, slug=None):
@@ -52,4 +53,8 @@ def detail(request, section_slug, slug):
 
     meta = MetaSeo(item)
 
-    return render(request, 'midnight_news/news/detail.html', {'item': item, 'text': text, 'meta': meta, 'crumbs': crumbs})
+    comments = get_object_comments(NewsComment, item.id)
+
+    comments_form = NewsCommentForm(initial=get_comment_init(request, item))
+
+    return render(request, 'midnight_news/news/detail.html', {'item': item, 'text': text, 'meta': meta, 'crumbs': crumbs, 'comments': comments, 'comments_form': comments_form})

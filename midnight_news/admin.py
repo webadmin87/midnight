@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.forms import ModelForm
 
 from midnight_main.admin import BaseAdmin, BaseAdminTree
-from midnight_news.models import Section, News
+from midnight_news.models import Section, News, NewsComment
 from midnight_main.widgets import AdminImageWidget
+from django.utils.translation import ugettext_lazy as _
 
 
 class SectionAdmin(BaseAdminTree):
@@ -45,7 +46,7 @@ class NewsForm(ModelForm):
 class NewsAdmin(BaseAdmin):
 
     fieldsets = [
-        (None, {'fields':  ['active', 'title', 'slug', 'date', 'sections', 'image', 'annotation', 'text']}),
+        (None, {'fields':  ['active', 'title', 'slug', 'date', 'sections', 'image', 'annotation', 'text', 'comments']}),
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
@@ -71,3 +72,20 @@ class NewsAdmin(BaseAdmin):
     public_link.short_description = 'Url'
 
 admin.site.register(News, NewsAdmin)
+
+
+class NewsCommentAdmin(BaseAdminTree):
+
+    exclude = ('author',)
+
+    list_display = ('id', 'username', 'email', 'text', 'news_obj',)
+
+    search_fields = ('id', 'username', 'email',)
+
+    def news_obj(self, comment):
+        return '<a href="%s">%s</a>' % (comment.obj.get_absolute_url(), comment.obj.title)
+
+    news_obj.allow_tags = True
+    news_obj.short_description = _('News')
+
+admin.site.register(NewsComment, NewsCommentAdmin)

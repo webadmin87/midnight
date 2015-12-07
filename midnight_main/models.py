@@ -68,6 +68,13 @@ class BaseComment(BaseTree):
 
     text = models.TextField(verbose_name=_('Comment'))
 
+    def __str__(self):
+        return self.username
+
+    class MPTTMeta:
+
+        order_insertion_by = ['created_at']
+
     class Meta:
 
         abstract = True
@@ -225,15 +232,8 @@ class PageComment(BaseComment):
 
     obj = ForeignKey(Page)
 
-    def __str__(self):
-        return self.username
-
-    class MPTTMeta:
-
-        order_insertion_by = ['created_at']
-
     class Meta:
 
         verbose_name = _('PageComment')
 
-        verbose_name_plural = _('PageComment')
+        verbose_name_plural = _('PageComments')

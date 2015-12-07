@@ -6,6 +6,8 @@
 {% block keywords %}{{ meta.keywords }}{% endblock %}
 {% block description %}{{ meta.description }}{% endblock %}
 
+{% load i18n midnight_main %}
+
 {% block content %}
 
     <div class="clearfix">
@@ -19,6 +21,14 @@
         {% endthumbnail %}
 
         {{ text | safe }}
+
+        {% if item.comments %}
+
+            <h2>{% trans "Comments" %}</h2>
+
+            {% comments comments comments_form item "midnight_news:news_comments" %}
+
+        {% endif %}
 
     </div>
 
