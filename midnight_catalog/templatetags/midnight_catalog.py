@@ -36,13 +36,15 @@ def currency(money):
     return "%s%s %s" % (intcomma(int(money)), formatted, symbol)
 
 
-def catalog_sections(context, slug=None, **kwargs):
+def catalog_sections(context, slug=None, level=2, **kwargs):
     if slug is None:
         sections = Section.objects.published().all()
+        max_level = level - 1
     else:
         section = Section.objects.get(slug=slug)
         sections = section.get_descendants().all()
+        max_level = section.level + level
     mark_current_menus(sections, context['request'].path_info)
-    return {'sections': sections, 'data': kwargs}
+    return {'sections': sections, 'max_level': max_level, 'data': kwargs}
 
 register.inclusion_tag(file_name='midnight_catalog/tags/catalog_sections.html', takes_context=True, name='catalog_sections')(catalog_sections)

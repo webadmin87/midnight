@@ -5,7 +5,7 @@
         <li {% if node.is_current %}class="active"{% endif %}>
             <a href="{% url "midnight_catalog:catalog_list" slug=node.slug %}">{{ node.title }}</a>
 
-            {% if not node.is_leaf_node %}
+            {% if not node.is_leaf_node and node.level < max_level %}
                 <ul class="children">
                     {{ children }}
                 </ul>

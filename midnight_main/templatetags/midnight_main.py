@@ -9,13 +9,14 @@ from midnight_main.services import mark_current_menus
 register = template.Library()
 
 
-def show_menu(context, slug, **kwargs):
+def show_menu(context, slug, level=2, **kwargs):
 
     try:
         menu = Menu.objects.published().get(slug=slug)
-        menus = menu.children.published().all()
+        menus = menu.get_descendants().published().all()
         mark_current_menus(menus, context['request'].path_info)
-        return {'menus': menus, 'data': kwargs}
+        max_level = menu.level + level
+        return {'menus': menus, 'max_level': max_level, 'data': kwargs}
     except Menu.DoesNotExist:
         return None
 

@@ -7,7 +7,7 @@
 
             <a href="{{ node.link }}" target="{{ node.target }}" class="{{ node.class }}">{{node.title}}</a>
 
-            {% if not node.is_leaf_node %}
+            {% if not node.is_leaf_node and node.level < max_level %}
                 <ul class="children">
                     {{ children }}
                 </ul>
