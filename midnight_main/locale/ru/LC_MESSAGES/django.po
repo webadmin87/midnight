@@ -148,6 +148,9 @@ msgstr "Фото"
 msgid "PageComment"
 msgstr "Комментарий к странице"
 
+msgid "PageComments"
+msgstr "Комментарии к страницам"
+
 #: templates/main/tags/ajax_form.html:5
 msgid "form_success"
 msgstr "Форма успешно отправлена"
