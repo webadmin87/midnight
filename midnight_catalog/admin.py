@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from midnight_main.admin import BaseAdmin, BaseAdminTree
 from midnight_main.widgets import AdminImageWidget
 from .models import *
+from django.utils.translation import ugettext_lazy as _
 
 
 class SectionForm(ModelForm):
@@ -145,7 +146,7 @@ class ProductPhotoInline(admin.StackedInline):
 class ProductAdmin(BaseAdmin):
 
     fieldsets = [
-        (None, {'fields':  ['active', 'title', 'slug', 'sections', 'image', 'price', 'sort', 'annotation', 'text']}),
+        (None, {'fields':  ['active', 'title', 'slug', 'sections', 'image', 'price', 'sort', 'annotation', 'text', 'comments']}),
         ('SEO', {'fields':  ['metatitle', 'keywords', 'description']}),
     ]
 
@@ -181,3 +182,19 @@ class ProductAdmin(BaseAdmin):
 
 admin.site.register(Product, ProductAdmin)
 
+
+class ProductCommentAdmin(BaseAdminTree):
+
+    exclude = ('author',)
+
+    list_display = ('id', 'username', 'email', 'text', 'product_obj',)
+
+    search_fields = ('id', 'username', 'email',)
+
+    def product_obj(self, comment):
+        return '<a href="%s">%s</a>' % (comment.obj.get_absolute_url(), comment.obj.title)
+
+    product_obj.allow_tags = True
+    product_obj.short_description = _('Product')
+
+admin.site.register(ProductComment, ProductCommentAdmin)

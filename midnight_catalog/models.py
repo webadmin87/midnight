@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from mptt.fields import TreeManyToManyField
 from sorl.thumbnail import ImageField
-from midnight_main.models import Base, BreadCrumbsMixin, BaseTree
+from midnight_main.models import Base, BreadCrumbsMixin, BaseTree, BaseComment
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -63,6 +63,8 @@ class Product(Base):
     annotation = models.TextField(blank=True, verbose_name=_('Annotation'))
 
     text = RichTextField(blank=True, verbose_name=_('Text'))
+
+    comments = models.BooleanField(default=False, verbose_name=_('Comments'))
 
     metatitle = models.CharField(max_length=2000, blank=True, verbose_name=_('Title'))
 
@@ -159,3 +161,12 @@ class ParamValue(Base):
         verbose_name_plural = _('ParamValues')
 
 
+class ProductComment(BaseComment):
+
+    obj = models.ForeignKey(Product)
+
+    class Meta:
+
+        verbose_name = _('ProductComment')
+
+        verbose_name_plural = _('ProductComments')

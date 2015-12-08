@@ -122,3 +122,9 @@ msgstr "Значение параметра"
 
 msgid "ParamValues"
 msgstr "Значения параметров"
+
+msgid "ProductComment"
+msgstr "Комментарий к товару"
+
+msgid "ProductComments"
+msgstr "Комментарии к товарам"
