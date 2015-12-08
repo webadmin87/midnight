@@ -11,6 +11,9 @@ from ckeditor.fields import RichTextField
 
 
 class AppUser(AbstractUser):
+    """
+    Пользователь приложения
+    """
 
     phone = models.CharField(blank=True, max_length=10, verbose_name=_('Phone'))
 
@@ -20,6 +23,9 @@ class AppUser(AbstractUser):
 
 
 class Base(models.Model):
+    """
+    Базовая модель
+    """
 
     active = models.BooleanField(default=True, verbose_name=_('Active'))
 
@@ -35,6 +41,9 @@ class Base(models.Model):
 
 
 class BaseTree(MPTTModel):
+    """
+    Базовая древовидная модель
+    """
 
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True, verbose_name=_('Parent'))
 
@@ -61,6 +70,9 @@ class BaseTree(MPTTModel):
 
 
 class BaseComment(BaseTree):
+    """
+    Базовая модель для комментариев
+    """
 
     username = models.CharField(max_length=255, verbose_name=_('Username'))
 
@@ -81,6 +93,9 @@ class BaseComment(BaseTree):
 
 
 class BreadCrumbsMixin(object):
+    """
+    Примись для формирования хлебных крошек древовидных объектов
+    """
     def get_breadcrumbs(self, self_url=False):
         crumbs = [{'label': item.title, 'url': item.get_absolute_url()} for item in self.get_ancestors()]
         if self_url:

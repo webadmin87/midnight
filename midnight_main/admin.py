@@ -9,8 +9,11 @@ from midnight_main.widgets import AdminImageWidget
 
 
 class BaseAdminAbstract(object):
+    """
+    Базовй класс для админки
+    """
 
-     def save_model(self, request, obj, form, change):
+    def save_model(self, request, obj, form, change):
 
         obj.author = request.user
 

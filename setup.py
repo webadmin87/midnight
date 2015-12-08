@@ -20,6 +20,7 @@ CLASSIFIERS = [
 
 INSTALL_REQUIREMENTS = [
     'psycopg2',
+    'docutils',
     'Pillow',
     'django==1.8.4',
     'django-mptt==0.7.4',

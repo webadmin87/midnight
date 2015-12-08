@@ -7,6 +7,12 @@ from midnight_main.components import MetaSeo
 
 
 def get_page_tpl_ctx(page, request):
+    """
+    Возвращает контекст для рендеринга представления текстовой страницы
+    :param page: модель страницы
+    :param request: запрос
+    :return:
+    """
     text = Template(page.text).render(Context())
     meta = MetaSeo(page)
     comments = get_object_comments(PageComment, page.id)
@@ -19,6 +25,12 @@ def get_page_tpl_ctx(page, request):
 
 
 def get_comment_init(request, obj):
+    """
+    Возвращает словарь для инициализации начальных значений модели комментария
+    :param request: запрос
+    :param obj: объект к которому добавляется комментарий
+    :return:
+    """
     if request.user.is_authenticated():
         init = {'obj': obj, 'username': request.user.username, 'email': request.user.email}
     else:
@@ -27,10 +39,22 @@ def get_comment_init(request, obj):
 
 
 def get_object_comments(model_cls, obj_id):
+    """
+    Возвращает все комментарии для объекта
+    :param model_cls: класс модели комментария
+    :param obj_id: идентификатор объекта
+    :return:
+    """
     return model_cls.objects.filter(obj__id=obj_id).all()
 
 
 def post_comment(form, user):
+    """
+    Постинг комментария
+    :param form: форма комментария
+    :param user: пользователь
+    :return:
+    """
     if form.is_valid():
         model = form.save(commit=False)
         if user.is_authenticated():
@@ -42,6 +66,12 @@ def post_comment(form, user):
 
 
 def save_formset_with_author(formset, user):
+    """
+    Проставляет моделям из набора форм автора
+    :param formset: набор форм
+    :param user: автор
+    :return:
+    """
     instances = formset.save(commit=False)
     for obj in formset.deleted_objects:
         obj.delete()
@@ -53,7 +83,13 @@ def save_formset_with_author(formset, user):
 
 
 def get_by_page(query, page, page_size):
-
+    """
+    Осуществляет пагинацию
+    :param query: запрос
+    :param page: номер страницы
+    :param page_size: количество объектов на странице
+    :return:
+    """
     pager = Paginator(query, page_size)
 
     try:
@@ -69,6 +105,12 @@ def get_by_page(query, page, page_size):
 
 
 def mark_current_menus(menus, path_info):
+    """
+    Отмечает активные модели меню (У которых ссылка соответствует текущему path info)
+    :param menus: список моделей меню
+    :param path_info: path info
+    :return:
+    """
     for menu in menus:
         if menu.get_absolute_url() == "/":
             menu.is_current = menu.get_absolute_url() == path_info

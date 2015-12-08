@@ -1,5 +1,7 @@
 class MetaSeo(object):
-
+    """
+    Хранит мет теги для сео
+    """
     metatitle = ''
 
     keywords = ''

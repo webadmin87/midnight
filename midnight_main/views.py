@@ -12,6 +12,10 @@ from django.views.generic import View
 
 
 class UpdateProfile(UpdateView):
+    """
+    Изменение профиля пользователя
+    """
+
     model = AppUser
     form_class = Profile
     template_name = 'midnight_main/users/appuser_update_form.html'
@@ -33,6 +37,13 @@ class UpdateProfile(UpdateView):
 
 
 def pages(request, path=None, instance=None):
+    """
+    Представление для отображения текстовых страниц
+    :param request: запрос
+    :param path: адрес
+    :param instance: страница
+    :return:
+    """
 
     if instance and instance.active:
         p = instance
@@ -43,11 +54,19 @@ def pages(request, path=None, instance=None):
 
 
 def main_page(request):
+    """
+    Представление для отображения главной страницы
+    :param request: запрос
+    :return:
+    """
     p = get_object_or_404(Page, slug='main', active=True)
     return render(request, p.tpl, get_page_tpl_ctx(p, request))
 
 
 class FeedbackView(View):
+    """
+    Представление для обратной связи
+    """
 
     form_cls = None
 
@@ -71,6 +90,9 @@ class FeedbackView(View):
 
 
 class CommentView(View):
+    """
+    Представление для добавления и отображения комментариев
+    """
 
     model_cls = None
 

@@ -4,6 +4,9 @@ from sorl.thumbnail import get_thumbnail
 
 
 class AdminImageWidget(AdminFileWidget):
+    """
+    Поле загрузки файла с превью загруженного изображения
+    """
     def render(self, name, value, attrs=None):
         output = []
         if value and getattr(value, "url", None):

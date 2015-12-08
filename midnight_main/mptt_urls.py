@@ -6,6 +6,9 @@ def _load(module):
 
 
 class View(object):
+    """
+    Позволяет организовать url для древовидных моделей
+    """
 
     def __init__(self, model, view, slug_field):
         self.model = _load(model)

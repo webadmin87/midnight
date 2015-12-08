@@ -7,6 +7,9 @@ from midnight_main.widgets import AdminImageWidget
 
 
 class Feedback(forms.Form):
+    """
+    Форма обратной связи
+    """
 
     name = forms.CharField(label=_('Name'), max_length=255)
 
@@ -20,6 +23,9 @@ class Feedback(forms.Form):
 
 
 class Profile(forms.ModelForm):
+    """
+    Форма для редактирования профиля пользователя
+    """
 
     password_change = forms.CharField(required=False, widget=forms.PasswordInput, min_length=6, label=_("Password"))
 
@@ -43,6 +49,9 @@ class Profile(forms.ModelForm):
 
 
 class PageCommentForm(forms.ModelForm):
+    """
+    Форма для комментария к страницам
+    """
 
     captcha = CaptchaField(label=_('Captcha'))
 
