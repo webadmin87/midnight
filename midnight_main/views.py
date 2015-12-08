@@ -95,8 +95,10 @@ class CommentView(View):
     """
 
     model_cls = None
+    """Класс модели комментариев"""
 
     form_cls = None
+    """Класс формы добавления комментариев"""
 
     list_tpl = 'midnight_main/tags/comments_list.html'
 
