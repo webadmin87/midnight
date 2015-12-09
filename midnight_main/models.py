@@ -106,6 +106,9 @@ class BreadCrumbsMixin(object):
 
 
 class Page(BreadCrumbsMixin, BaseTree):
+    """
+    Модель текстовых страниц
+    """
 
     MAIN_SLUG = "main"
 
@@ -150,6 +153,9 @@ class Page(BreadCrumbsMixin, BaseTree):
 
 
 class IncludeArea(Base):
+    """
+    Модель текстовых включаемых областей
+    """
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -168,6 +174,9 @@ class IncludeArea(Base):
 
 
 class Menu(BaseTree):
+    """
+    Модель меню
+    """
 
     TARGET_CHOICES = (
         ('_self', _('Self window')),
@@ -206,6 +215,9 @@ class Menu(BaseTree):
 
 
 class PhotoAlbum(Base):
+    """
+    Модель фото альбома
+    """
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -224,6 +236,9 @@ class PhotoAlbum(Base):
 
 
 class Photo(Base):
+    """
+    Модель фотографии
+    """
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -244,6 +259,9 @@ class Photo(Base):
 
 
 class PageComment(BaseComment):
+    """
+    Модель комментария к текстовой странице
+    """
 
     obj = ForeignKey(Page)
 
