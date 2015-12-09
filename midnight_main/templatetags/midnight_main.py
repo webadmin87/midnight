@@ -25,7 +25,7 @@ def show_menu(context, slug, level=2, **kwargs):
     """
     try:
         menu = Menu.objects.published().get(slug=slug)
-        menus = menu.get_descendants().published().all()
+        menus = menu.get_descendants().all()
         mark_current_menus(menus, context['request'].path_info)
         max_level = menu.level + level
         return {'menus': menus, 'max_level': max_level, 'data': kwargs}

@@ -3,17 +3,21 @@
 <ul{% for key, value in data.items %} {{ key }} = "{{ value }}"{% endfor %}>
 
     {% recursetree menus %}
-        <li {% if node.is_current %}class="active"{% endif %}>
 
-            <a href="{{ node.link }}" target="{{ node.target }}" class="{{ node.class }}">{{node.title}}</a>
+        {% if node.is_published %}
+            <li {% if node.is_current %}class="active"{% endif %}>
 
-            {% if not node.is_leaf_node and node.level < max_level %}
-                <ul class="children">
-                    {{ children }}
-                </ul>
-            {% endif %}
+                <a href="{{ node.link }}" target="{{ node.target }}" class="{{ node.class }}">{{node.title}}</a>
 
-        </li>
+                {% if not node.is_leaf_node and node.level < max_level %}
+                    <ul class="children">
+                        {{ children }}
+                    </ul>
+                {% endif %}
+
+            </li>
+        {% endif %}
+
     {% endrecursetree %}
 
 </ul>

@@ -35,6 +35,9 @@ class Base(models.Model):
 
     update_at = models.DateTimeField(auto_now=True)
 
+    def is_published(self):
+        return self.active is True
+
     class Meta:
 
         abstract = True
@@ -55,15 +58,14 @@ class BaseTree(MPTTModel):
 
     update_at = models.DateTimeField(auto_now=True)
 
+    def is_published(self):
+        return self.active is True
+
     def get_path(self):
         if hasattr(self, 'slug'):
             return '/'.join([item.slug for item in self.get_ancestors(include_self=True)])
         else:
             return None
-
-    def has_childs(self):
-        count = self.children.count()
-        return count > 0
 
     class Meta:
         abstract = True

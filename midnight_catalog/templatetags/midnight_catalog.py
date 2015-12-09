@@ -65,7 +65,7 @@ def currency(money):
     return "%s%s %s" % (intcomma(int(money)), formatted, symbol)
 
 
-def catalog_sections(context, slug=None, level=2, **kwargs):
+def catalog_sections(context, slug=None, level=3, **kwargs):
     """
     Отображает иерерхический список категорий каталога.
     Для каждой категории отображается количество содержащегося в ней товара.
@@ -82,7 +82,7 @@ def catalog_sections(context, slug=None, level=2, **kwargs):
     """
     count_products = Count(Case(When(product__active=True, then=Value(1)), output_field=IntegerField()))
     if slug is None:
-        sections = Section.objects.annotate(product__count=count_products).published().all()
+        sections = Section.objects.annotate(product__count=count_products).all()
         max_level = level - 1
     else:
         section = Section.objects.get(slug=slug)
