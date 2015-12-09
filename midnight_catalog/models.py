@@ -8,6 +8,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Section(BreadCrumbsMixin, BaseTree):
+    """
+    Модель категории каталога
+    """
 
     is_current = False
 
@@ -47,6 +50,9 @@ class Section(BreadCrumbsMixin, BaseTree):
 
 
 class Product(Base):
+    """
+    Модель товара
+    """
 
     title = models.CharField(max_length=255, verbose_name=_('Title'))
 
@@ -86,6 +92,9 @@ class Product(Base):
 
 
 class ProductPhoto(Base):
+    """
+    Модель фотографии товара
+    """
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -106,6 +115,9 @@ class ProductPhoto(Base):
 
 
 class ParamGroup(Base):
+    """
+    Модель группы параметров. Служит для группировки параметров по типу товара. Например: телефоны, планшеты, ноутбуки и т.п.
+    """
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -120,6 +132,9 @@ class ParamGroup(Base):
 
 
 class Param(Base):
+    """
+    Параметр товара
+    """
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -142,6 +157,9 @@ class Param(Base):
 
 
 class ParamValue(Base):
+    """
+    Значение параметра товара
+    """
 
     product = models.ForeignKey(Product, verbose_name=_('Product'))
 
@@ -162,6 +180,9 @@ class ParamValue(Base):
 
 
 class ProductComment(BaseComment):
+    """
+    Комментарий к товару
+    """
 
     obj = models.ForeignKey(Product)
 

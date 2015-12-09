@@ -5,6 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class ProductCommentForm(forms.ModelForm):
+    """
+    Форма добавления комментария к товару
+    """
 
     captcha = CaptchaField(label=_('Captcha'))
 

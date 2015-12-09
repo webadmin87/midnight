@@ -8,6 +8,9 @@ from mptt.fields import TreeManyToManyField
 
 
 class Section(BreadCrumbsMixin, BaseTree):
+    """
+    Модель категории новостей
+    """
 
     title = models.CharField(max_length=255, verbose_name=_('Title'))
 
@@ -39,6 +42,9 @@ class Section(BreadCrumbsMixin, BaseTree):
 
 
 class News(Base):
+    """
+    Модель новости
+    """
 
     title = models.CharField(max_length=255, verbose_name=_('Title'))
 
@@ -76,6 +82,9 @@ class News(Base):
 
 
 class NewsComment(BaseComment):
+    """
+    Модель комментария к новости
+    """
 
     obj = models.ForeignKey(News)
 

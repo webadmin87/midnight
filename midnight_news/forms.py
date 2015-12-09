@@ -6,6 +6,9 @@ from midnight_news.models import NewsComment
 
 
 class NewsCommentForm(forms.ModelForm):
+    """
+    Форма для добавления комментария к новости
+    """
 
     captcha = CaptchaField(label=_('Captcha'))
 

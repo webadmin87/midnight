@@ -11,6 +11,17 @@ register = template.Library()
 
 @register.simple_tag()
 def param_value(param_values, slug):
+    """
+    Отображает значение параметра товара
+
+    Пример использования::
+
+        {% param_value item.paramvalue_set.all "producer" %}
+
+    :param param_values: список значений параметров
+    :param slug: символьный код параметра
+    :return:
+    """
     for val in param_values:
         if val.param.slug == slug:
             return val.value
@@ -19,6 +30,17 @@ def param_value(param_values, slug):
 
 @register.simple_tag()
 def param_title(param_values, slug):
+    """
+    Отображает наименование параметра товара
+
+    Пример использования::
+
+        {% param_title item.paramvalue_set.all "producer" %}
+
+    :param param_values: список значений параметров
+    :param slug: символьный код параметра
+    :return:
+    """
     for val in param_values:
         if val.param.slug == slug:
             return val.param.title
@@ -27,6 +49,12 @@ def param_title(param_values, slug):
 
 @register.filter()
 def currency(money):
+    """
+    Фильтр валюты. Форматирует цену в соответствии с установленным количеством знаков после запятой,
+    а также добавлеят символ валюты.
+    :param money:
+    :return:
+    """
     decimals = getattr(settings, 'MIDNIGHT_CATALOG_DECIMALS', 2)
     money = round(float(money), decimals)
     symbol = getattr(settings, 'MIDNIGHT_CATALOG_CURRENCY', 'руб')
@@ -38,6 +66,20 @@ def currency(money):
 
 
 def catalog_sections(context, slug=None, level=2, **kwargs):
+    """
+    Отображает иерерхический список категорий каталога.
+    Для каждой категории отображается количество содержащегося в ней товара.
+
+    Пример использования::
+
+        {% catalog_sections 'section_slug' 2 class='catalog-class' %}
+
+    :param context: контекст
+    :param slug: символьный код родительской категории, если не задан, отображается вся иерархия
+    :param level: отображаемый уровень вложенности
+    :param kwargs: html атрибуты оборачивающего тега
+    :return:
+    """
     count_products = Count(Case(When(product__active=True, then=Value(1)), output_field=IntegerField()))
     if slug is None:
         sections = Section.objects.annotate(product__count=count_products).published().all()

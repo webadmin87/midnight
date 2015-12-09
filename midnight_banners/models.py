@@ -4,6 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class BannerPlace(Base):
+    """
+    Модель баннерного места. Служит для агрегации баннеров.
+    """
 
     title = models.CharField(max_length=500, verbose_name=_('Title'))
 
@@ -20,6 +23,9 @@ class BannerPlace(Base):
 
 
 class Banner(Base):
+    """
+    Модель баннера
+    """
 
     TARGET_CHOICES = (
         ('_self', _('Self window')),
