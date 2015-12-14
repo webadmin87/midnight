@@ -44,7 +44,7 @@ setup(
     author='Churkin Anton',
     author_email='webadmin87@gmail.com',
     name='midnight',
-    version='0.1.0-alpha',
+    version='0.1.1-alpha',
     description='Amazing cms powered by Django framework',
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     url='https://github.com/webadmin87/midnight',
