@@ -116,6 +116,7 @@ class Page(BreadCrumbsMixin, BaseTree):
 
     PAGE_TPL_CHOICES = (
         ('midnight_main/pages/pages.html', _('Simple page')),
+        ('midnight_main/pages/main.html', _('Main page')),
         ('midnight_main/pages/guestbook.html', _('Guestbook')),
     )
 

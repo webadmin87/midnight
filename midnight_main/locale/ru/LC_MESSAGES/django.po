@@ -250,3 +250,6 @@ msgstr "Пароль"
 
 msgid "Password confirm"
 msgstr "Подтверждение пароля"
+
+msgid "Main page"
+msgstr "Главная страница"

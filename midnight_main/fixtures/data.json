@@ -33,7 +33,7 @@
       "description": "",
       "slug": "main",
       "lft": 1,
-      "tpl": "midnight_main/pages/pages.html",
+      "tpl": "midnight_main/pages/main.html",
       "sort": 500,
       "level": 0,
       "parent": null,

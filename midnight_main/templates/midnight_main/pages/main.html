@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% load midnight_main i18n %}
+
+{% block title %}{{ meta.metatitle }}{% endblock %}
+{% block keywords %}{{ meta.keywords }}{% endblock %}
+{% block description %}{{ meta.description }}{% endblock %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+
+{{ text | safe }}
+
+    {% if page.comments %}
+
+        <h2>{% trans "Comments" %}</h2>
+
+        {% comments comments comments_form page "midnight_main:page_comments" %}
+
+    {% endif %}
+
+{% endblock %}
