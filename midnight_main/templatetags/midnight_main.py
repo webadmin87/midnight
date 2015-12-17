@@ -136,7 +136,7 @@ def breadcrumbs(crumbs, **kwargs):
 register.inclusion_tag(file_name='midnight_main/tags/breadcrumbs.html', name='breadcrumbs')(breadcrumbs)
 
 
-def comments_block(comments, form, obj, url, **kwargs):
+def comments_block(context, comments, form, obj, url, **kwargs):
     """
     Тег для отображения блока комментариев
 
@@ -144,6 +144,7 @@ def comments_block(comments, form, obj, url, **kwargs):
 
         {% comments comments comments_form page "midnight_main:page_comments" %}
 
+    :param context: контекст
     :param comments: список комментариев
     :param form: форма добавления комментария
     :param obj: объект к которому привязаны комментарии
@@ -159,9 +160,12 @@ def comments_block(comments, form, obj, url, **kwargs):
     else:
         data['class'] = 'comments-block'
 
+    if context['request'].user.is_authenticated():
+        del form.fields['captcha']
+
     return {'comments': comments, 'form': form, 'url': url, 'obj': obj, 'data': data}
 
-register.inclusion_tag(file_name='midnight_main/tags/comments.html', name='comments')(comments_block)
+register.inclusion_tag(file_name='midnight_main/tags/comments.html', name='comments', takes_context=True)(comments_block)
 
 
 def search_simple_form(context):

@@ -112,6 +112,9 @@ class CommentView(View):
 
         form = self.form_cls(request.POST)
 
+        if request.user.is_authenticated():
+            del form.fields['captcha']
+
         res = post_comment(form, request.user)
 
         status = 200 if res else 422
