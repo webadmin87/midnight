@@ -15,6 +15,11 @@ class AppUser(AbstractUser):
     Пользователь приложения
     """
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._meta.get_field_by_name('email')[0]._unique = True
+        self._meta.get_field_by_name('email')[0]._blank = False
+
     phone = models.CharField(blank=True, max_length=10, verbose_name=_('Phone'))
 
     image = ImageField(upload_to='users', verbose_name=_('Image'), blank=True)

@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('username', models.CharField(verbose_name='username', validators=[django.core.validators.RegexValidator('^[\\w.@+-]+$', 'Enter a valid username. This value may contain only letters, numbers and @/./+/-/_ characters.', 'invalid')], max_length=30, unique=True, error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.')),
                 ('first_name', models.CharField(blank=True, verbose_name='first name', max_length=30)),
                 ('last_name', models.CharField(blank=True, verbose_name='last name', max_length=30)),
-                ('email', models.EmailField(blank=True, verbose_name='email address', max_length=254)),
+                ('email', models.EmailField(blank=False, unique=True, verbose_name='email address', max_length=254)),
                 ('is_staff', models.BooleanField(default=False, verbose_name='staff status', help_text='Designates whether the user can log into this admin site.')),
                 ('is_active', models.BooleanField(default=True, verbose_name='active', help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
