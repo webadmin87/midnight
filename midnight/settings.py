@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'registration',
     'precise_bbcode',
     'haystack',
+    'autocomplete_light',
     'midnight_main',
     'midnight_news',
     'midnight_banners',

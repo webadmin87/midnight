@@ -38,6 +38,7 @@ INSTALL_REQUIREMENTS = [
     'jsmin',
     'cssmin',
     'django-haystack==2.4.0',
+    'django-autocomplete-light==2.2.0',
 ]
 
 setup(
