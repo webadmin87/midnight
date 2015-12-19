@@ -20,6 +20,7 @@ from django.conf import settings
 from filebrowser.sites import site
 
 urlpatterns = [
+    url(r'^autocomplete/', include('autocomplete_light.urls')),
     url(r'^search/', include('haystack.urls')),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
