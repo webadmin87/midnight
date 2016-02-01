@@ -22,34 +22,51 @@
 
 <body>
 
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">MidnightCms</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="main-menu">
+                {% show_menu "main" class='nav navbar-nav' %}
+                {% user_info class="navbar-text navbar-right" %}
+                {% search_simple_form class="navbar-form navbar-right" role="search"%}
+            </div>
+
+        </div>
+    </nav>
+
 	<div class="container">
+
+        {% if request.get_full_path = "/" %}
 
         <div class="jumbotron">
             <h1>MidnightCms</h1>
             <p>The amazing powered by Django framework</p>
             <p>
                 <a class="btn btn-primary btn-lg" href="/admin/" role="button" target="_blank">Admin panel</a>
-                <a class="feedback" class="btn btn-link" href="#feedback_form">{% trans "Feedback" %}</a>
+                <a class="feedback btn btn-default btn-lg" href="#feedback_form">{% trans "Feedback" %}</a>
             </p>
         </div>
 
+        {% endif %}
+
 		<div class="row">
 
-			<div class="col-xs-4">
-
-                {% search_simple_form %}
-
-                {% user_info %}
-
-                {% show_menu "main" class='nav nav-pills nav-stacked' %}
-
-                <hr />
-
-                {% show_area "left" %}
-
-                <hr />
+            <div class="col-xs-4">
 
                 {% show_news_line slug='company' %}
+                <hr />
+                {% show_area "left" %}
+                <hr />
 
 			</div>
 	

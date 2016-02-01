@@ -102,7 +102,7 @@ def ajax_form(cls_name, view_name, modal=False, tag_id=None):
 register.inclusion_tag(file_name='midnight_main/tags/ajax_form.html', name='ajax_form')(ajax_form)
 
 
-def user_info(context):
+def user_info(context, **kwargs):
     """
     Отображает информацию о текущем авторизованом пользователе, либо ссылки на авторизацию и регистрацию
 
@@ -111,10 +111,11 @@ def user_info(context):
         {% user_info %}
 
     :param context: контекст
+    :param kwargs: html атрибуты оборачивающего тега
     :return:
     """
     request = context['request']
-    return {'user': request.user}
+    return {'user': request.user, 'data': kwargs}
 
 register.inclusion_tag(file_name='midnight_main/tags/user_info.html', takes_context=True, name='user_info')(user_info)
 
@@ -168,7 +169,7 @@ def comments_block(context, comments, form, obj, url, **kwargs):
 register.inclusion_tag(file_name='midnight_main/tags/comments.html', name='comments', takes_context=True)(comments_block)
 
 
-def search_simple_form(context):
+def search_simple_form(context, **kwargs):
     """
     Форма поиска
 
@@ -177,8 +178,18 @@ def search_simple_form(context):
         {% search_simple_form %}
 
     :param context: контекст
+    :param kwargs: html атрибуты формы
     :return:
     """
-    return {'query': context['request'].GET.get('q', '')}
+
+    data = kwargs
+
+    if 'action' in data:
+        del data['action']
+
+    if 'method' in data:
+        del data['method']
+
+    return {'query': context['request'].GET.get('q', ''), 'data': data}
 
 register.inclusion_tag(file_name='midnight_main/tags/search.html', takes_context=True, name='search_simple_form')(search_simple_form)
