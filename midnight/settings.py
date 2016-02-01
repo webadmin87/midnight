@@ -121,19 +121,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'midnight', 'www', 'static')
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "www", "bower_components"),
-    os.path.join(BASE_DIR, "www", "themes", THEME_NAME),
+    os.path.join(BASE_DIR, "midnight", "www", "bower_components"),
+    os.path.join(BASE_DIR, "midnight", "www", "themes", THEME_NAME),
 )
 
 # Media storage
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'www', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'midnight', 'www', 'media')
 MEDIA_URL = '/media/'
-
-# Assets
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
 
 # Captcha
 
