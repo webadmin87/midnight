@@ -32,7 +32,7 @@ INSTALL_REQUIREMENTS = [
     'django-registration-redux==1.2',
     'django-debug-toolbar==1.4',
     'django-precise-bbcode==1.0.10',
-    'django-grappelli==2.7.2',
+    'django-grappelli==2.7.3',
     'django-filebrowser==3.6.1',
     'django-ckeditor==5.0.2',
     'jsmin',
