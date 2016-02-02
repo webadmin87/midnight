@@ -36,9 +36,20 @@
             </div>
 
             <div class="collapse navbar-collapse" id="main-menu">
-                {% show_menu "main" class='nav navbar-nav' %}
-                {% user_info class="navbar-text navbar-right" %}
-                {% search_simple_form class="navbar-form navbar-right" role="search"%}
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            {% trans "Menu" %} <span class="caret"></span>
+                        </a>
+                        {% show_menu "main" class='dropdown-menu' %}
+                    </li>
+                </ul>
+
+                <div class="navbar-right">
+                    {% search_simple_form class="navbar-form pull-right" role="search"%}
+                    {% user_info class="navbar-text pull-right" %}
+                </div>
             </div>
 
         </div>
@@ -61,16 +72,7 @@
 
 		<div class="row">
 
-            <div class="col-xs-4">
-
-                {% show_news_line slug='company' %}
-                <hr />
-                {% show_area "left" %}
-                <hr />
-
-			</div>
-	
-			<div class="col-xs-8">
+			<div class="col-sm-push-4 col-xs-12 col-sm-8">
 
                 {% if crumbs %}
                     {% breadcrumbs crumbs class='breadcrumb' %}
@@ -82,6 +84,15 @@
                 {% show_gallery "test" "150x110" class='list-inline' %}
 
                 {% ajax_form 'midnight_main.forms.Feedback' 'midnight_main:page_feedback' tag_id='feedback_form' modal=True %}
+
+			</div>
+
+            <div class="col-sm-pull-8 col-xs-12 col-sm-4">
+
+                {% show_news_line slug='company' %}
+                <hr />
+                {% show_area "left" %}
+                <hr />
 
 			</div>
 
@@ -102,6 +113,7 @@
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
 
+<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'theme/js/functions.js' %}"></script>
 
 </body>
