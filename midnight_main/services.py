@@ -76,7 +76,7 @@ def save_formset_with_author(formset, user):
     for obj in formset.deleted_objects:
         obj.delete()
     for instance in instances:
-        if user.is_authenticated() and hasattr(instance, 'author'):
+        if user.is_authenticated() and hasattr(instance, 'author') and not instance.author:
             instance.author = user
         instance.save()
     formset.save_m2m()

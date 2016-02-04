@@ -5,6 +5,7 @@ from mptt.admin import MPTTModelAdmin
 from django.utils.translation import ugettext_lazy as _
 
 from midnight_main.models import *
+from midnight_main.services import save_formset_with_author
 from midnight_main.widgets import AdminImageWidget
 
 
@@ -15,7 +16,8 @@ class BaseAdminAbstract(object):
 
     def save_model(self, request, obj, form, change):
 
-        obj.author = request.user
+        if not obj.author:
+            obj.author = request.user
 
         obj.save()
 
@@ -120,13 +122,7 @@ class PhotoAlbumAdmin(BaseAdmin):
     search_fields = ('id', 'title', 'slug',)
 
     def save_formset(self, request, form, formset, change):
-        instances = formset.save(commit=False)
-        for obj in formset.deleted_objects:
-            obj.delete()
-        for instance in instances:
-            instance.author = request.user
-            instance.save()
-        formset.save_m2m()
+        save_formset_with_author(formset, request.user)
 
 
 admin.site.register(PhotoAlbum, PhotoAlbumAdmin)
