@@ -30,7 +30,7 @@ INSTALL_REQUIREMENTS = [
     'django-bootstrap-form',
     'django-simple-captcha==0.5.1',
     'django-registration-redux==1.3',
-    'django-debug-toolbar==1.4',
+    'django-debug-toolbar==1.11.1',
     'django-precise-bbcode==1.1.1',
     'django-grappelli==2.7.3',
     'django-filebrowser==3.6.1',
