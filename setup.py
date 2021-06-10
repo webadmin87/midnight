@@ -22,7 +22,7 @@ INSTALL_REQUIREMENTS = [
     'psycopg2',
     'docutils',
     'Pillow',
-    'django==1.8.4',
+    'django==2.2.24',
     'django-mptt==0.8.0',
     'sorl-thumbnail==12.3',
     'django-assets==0.11',
